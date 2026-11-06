@@ -96,7 +96,7 @@ const COMPARISON = [
 ];
 
 const STATS = [
-  { value: '8,000+', label: 'Students & teachers active across India' },
+  { value: '8,000+', label: 'Students & teachers in just 6 months' },
   { value: '< 10s', label: 'Average time to take attendance for a class of 60' },
   { value: '99.4%', label: 'WhatsApp parent delivery & read rate' },
   { value: '0', label: 'Biometric or desktop hardware needed' },
@@ -119,10 +119,10 @@ export const BusinessPage: React.FC = () => {
           <div className="mx-auto max-w-4xl text-center">
             <p className="eyebrow">Enterprise &amp; Academies</p>
             <h1 className="h-display mt-6 text-[2.75rem] sm:text-6xl md:text-7xl">
-              The operating system<br className="hidden sm:inline" /> for modern institutes.
+              The complete platform<br className="hidden sm:inline" /> for modern institutes.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-mute sm:text-lg">
-              From 50-student coaching batches to multi-campus academies with 8,000+ enrolments &mdash; Yaqeel simplifies attendance, fees, exams, and parent communications from one calm mobile app.
+              From 50-student coaching batches to multi-campus academies with 8,000+ enrolments in just 6 months &mdash; Yaqeel simplifies attendance, fees, exams, and parent communications from one calm mobile app.
             </p>
 
             {/* Hero Actions */}
@@ -145,7 +145,7 @@ export const BusinessPage: React.FC = () => {
             </div>
 
             <p className="mt-6 text-[13px] text-mute">
-              Trusted by 8,000+ students &amp; teachers · Free onboarding &amp; teacher training included
+              Trusted by 8,000+ students &amp; teachers in just 6 months &middot; Free onboarding &amp; teacher training included
             </p>
           </div>
 
@@ -256,7 +256,7 @@ export const BusinessPage: React.FC = () => {
                 Why tuition centres choose Yaqeel.
               </h2>
               <p className="mt-4 text-base text-mute">
-                Compare traditional legacy management software with Yaqeel's mobile-first operating system.
+                Compare traditional legacy management software with Yaqeel's mobile-first platform.
               </p>
             </div>
 
@@ -266,7 +266,7 @@ export const BusinessPage: React.FC = () => {
                 <div className="grid grid-cols-12 bg-white/60 p-5 text-xs font-medium uppercase tracking-wider text-mute sm:p-6">
                   <div className="col-span-4 sm:col-span-3">Feature</div>
                   <div className="col-span-4 sm:col-span-4 text-mute">Legacy software</div>
-                  <div className="col-span-4 sm:col-span-5 font-semibold text-accent">Yaqeel OS</div>
+                  <div className="col-span-4 sm:col-span-5 font-semibold text-accent">Yaqeel</div>
                 </div>
 
                 {/* Table Rows */}

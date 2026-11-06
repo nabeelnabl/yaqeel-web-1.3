@@ -19,7 +19,7 @@ export const Hero: React.FC = () => (
         Attendance, exams, fees and payroll in one calm, mobile-first app.
       </p>
       <div className="mt-10 flex justify-center"><AppBadgesGroup size="md" className="gap-3" /></div>
-      <p className="mt-6 text-[13px] text-mute">Trusted by 8,000+ students &amp; teachers across India</p>
+      <p className="mt-6 text-[13px] text-mute">Trusted by 8,000+ students &amp; teachers in just 6 months across India</p>
     </div>
 
     <div className="mx-auto mt-20 grid max-w-6xl grid-cols-2 border-y border-line md:grid-cols-4">
