@@ -4,6 +4,8 @@ import { HomePage } from './pages/HomePage';
 import { BusinessPage } from './pages/BusinessPage';
 import { SupportPage } from './pages/SupportPage';
 import { ConsolePage } from './pages/ConsolePage';
+import { ParentAppPage } from './pages/ParentAppPage';
+import { OneToOnePage } from './pages/OneToOnePage';
 import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { DeleteAccountPage } from './pages/DeleteAccountPage';
 import { TermsPage } from './pages/TermsPage';
@@ -32,6 +34,9 @@ export const App: React.FC = () => {
         <Route path="/business" element={<BusinessPage />} />
         <Route path="/support" element={<SupportPage />} />
         <Route path="/console" element={<ConsolePage />} />
+        <Route path="/parent-app" element={<ParentAppPage />} />
+        <Route path="/1-to-1" element={<OneToOnePage />} />
+        <Route path="/one-to-one" element={<OneToOnePage />} />
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/delete-account" element={<DeleteAccountPage />} />
         <Route path="/terms" element={<TermsPage />} />

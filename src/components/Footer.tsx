@@ -15,6 +15,8 @@ export const Footer: React.FC = () => (
       <div><h4 className={h}>Product</h4><ul className={col}>
         <li><Link to="/console">Console</Link></li>
         <li><Link to="/business">For business</Link></li>
+        <li><Link to="/1-to-1">1 to 1</Link></li>
+        <li><Link to="/parent-app">Parent app</Link></li>
         <li><Link to="/support">Support</Link></li></ul></div>
       <div><h4 className={h}>Legal</h4><ul className={col}>
         <li><Link to="/privacy">Privacy</Link></li><li><Link to="/terms">Terms</Link></li>
