@@ -86,9 +86,9 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
           }}
           aria-label={`Current demo: ${activeFeature}`}
         >
-          {/* Inner Screen Area - exactly matching the 354x772 cutout */}
+          {/* Inner Screen Area - precisely positioned at 354x772 cutout, masked seamlessly by screen-mask without artificial border-radius clipping */}
           <div
-            className="absolute overflow-hidden flex items-center justify-center bg-black rounded-[28px] xs:rounded-[32px] sm:rounded-[36px]"
+            className="absolute overflow-hidden flex items-center justify-center bg-black"
             style={{
               top: '1.75%',
               bottom: '1.75%',
