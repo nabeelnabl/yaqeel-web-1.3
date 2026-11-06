@@ -3,170 +3,397 @@ import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { Institutions } from '../components/Institutions';
 import { 
-  Building2, 
-  Users, 
-  TrendingUp, 
-  GraduationCap,
-  MessageSquare,
-  ArrowRight
+  ArrowUpRight, 
+  Check, 
+  MessageSquare 
 } from 'lucide-react';
+
+const WA_BASE = 'https://wa.me/918590028549';
+const WA_DEMO = `${WA_BASE}?text=${encodeURIComponent('Hi Yaqeel, I would like to book a free demo for my institute.')}`;
+const WA_PRICING = `${WA_BASE}?text=${encodeURIComponent('Hi Yaqeel, I would like to know more about institution pricing and plans.')}`;
+
+const QUAD_PILLARS = [
+  { n: '01', t: 'Operations', d: 'One-tap attendance & instant WhatsApp absence alerts in under 10 seconds.' },
+  { n: '02', t: 'Academics', d: 'Batch-wise marks entry, ranks, and automated digital report cards.' },
+  { n: '03', t: 'Finances', d: 'Live fee collection ledgers, automated receipts, and UPI due reminders.' },
+  { n: '04', t: 'Payroll', d: 'Teacher workload logs and automated salary calculation from logged hours.' },
+];
+
+const CORE_SOLUTIONS = [
+  {
+    n: '01',
+    category: 'Manage your institute',
+    title: 'Everything in one calm place',
+    description: 'Replace fragmented registers, Excel sheets, and paper receipts with a single unified mobile management system.',
+    points: [
+      'Multi-batch & student profile management',
+      'One-tap attendance with 10-second class turnouts',
+      'Fee records, instant receipts & payment histories',
+      'Exam creation, marks entry & printable report cards',
+    ],
+    cta: 'Explore management tools',
+    href: `${WA_BASE}?text=${encodeURIComponent('Hi Yaqeel, I would like to explore institute management features.')}`,
+    featured: false,
+  },
+  {
+    n: '02',
+    category: 'Keep everyone connected',
+    title: 'Built for students, teachers & parents',
+    description: 'Ensure parents are always informed and teachers can record daily marks and turnout directly from their smartphones.',
+    points: [
+      'Role-based access for teachers and administrators',
+      'Automated WhatsApp notifications for absent students',
+      'Dedicated Student & Parent mobile app',
+      'Timetable changes, test schedules & announcements',
+    ],
+    cta: 'Explore communication platform',
+    href: `${WA_BASE}?text=${encodeURIComponent('Hi Yaqeel, I would like to explore communication features for teachers & parents.')}`,
+    featured: true,
+  },
+  {
+    n: '03',
+    category: 'Grow with confidence',
+    title: 'Insights that help you improve',
+    description: 'Actionable real-time intelligence on student attendance drop-offs, fee defaulters, and teacher hours.',
+    points: [
+      'Class & subject-wise academic performance analytics',
+      'Real-time fee collection & pending balance tracking',
+      'Teacher hourly payroll and workload calculations',
+      'Clean exportable CSV & PDF reports for audits',
+    ],
+    cta: 'Discover business analytics',
+    href: `${WA_BASE}?text=${encodeURIComponent('Hi Yaqeel, I would like to discover analytics & reporting for my academy.')}`,
+    featured: false,
+  },
+];
+
+const COMPARISON = [
+  {
+    feature: 'Device requirement',
+    traditional: 'Requires desktop PC, server setup & biometric hardware',
+    yaqeel: '100% smartphone native — zero hardware or cables needed',
+  },
+  {
+    feature: 'Parent communication',
+    traditional: 'Manual SMS gateways or costly phone calls',
+    yaqeel: 'Automated instant WhatsApp alerts for attendance & marks',
+  },
+  {
+    feature: 'Teacher adoption',
+    traditional: 'Complex desktop software requiring weeks of staff training',
+    yaqeel: 'Intuitive iOS & Android app — mastered in under 5 minutes',
+  },
+  {
+    feature: 'Fee collection & receipts',
+    traditional: 'Paper receipt books & manual ledger reconciliation',
+    yaqeel: 'Automated digital PDF receipts with UPI reminder links',
+  },
+  {
+    feature: 'Pricing & contracts',
+    traditional: 'Steep setup fees, annual server maintenance & hidden costs',
+    yaqeel: 'Simple transparent pricing: ₹45 – ₹50 per student / year',
+  },
+];
+
+const STATS = [
+  { value: '8,000+', label: 'Students & teachers active across India' },
+  { value: '< 10s', label: 'Average time to take attendance for a class of 60' },
+  { value: '99.4%', label: 'WhatsApp parent delivery & read rate' },
+  { value: '0', label: 'Biometric or desktop hardware needed' },
+];
 
 export const BusinessPage: React.FC = () => {
   const openDemo = () => {
-    const text = encodeURIComponent("Hi Yaqeel, I would like to book a free demo for my institute.");
-    window.open(`https://wa.me/918590028549?text=${text}`, '_blank');
+    window.open(WA_DEMO, '_blank');
   };
 
   return (
-    <div className="min-h-screen bg-white text-neutral-900 selection:bg-blue-100 selection:text-neutral-900">
+    <div className="min-h-screen overflow-x-clip bg-paper text-ink">
       <Navbar onOpenDemo={openDemo} />
 
-      {/* Hero Header */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28 bg-neutral-950 text-white relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-blue-600/15 rounded-full blur-[140px] pointer-events-none" />
+      <main>
+        {/* ======================================================
+            HERO SECTION
+           ====================================================== */}
+        <section className="px-6 pt-36 sm:pt-44">
+          <div className="mx-auto max-w-4xl text-center">
+            <p className="eyebrow">Enterprise &amp; Academies</p>
+            <h1 className="h-display mt-6 text-[2.75rem] sm:text-6xl md:text-7xl">
+              The operating system<br className="hidden sm:inline" /> for modern institutes.
+            </h1>
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-mute sm:text-lg">
+              From 50-student coaching batches to multi-campus academies with 8,000+ enrolments &mdash; Yaqeel simplifies attendance, fees, exams, and parent communications from one calm mobile app.
+            </p>
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/20 text-blue-300 border border-blue-500/30 text-xs font-semibold mb-6">
-            <Building2 className="w-3.5 h-3.5" />
-            <span>Yaqeel for Business &amp; Institutions</span>
-          </div>
+            {/* Hero Actions */}
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+              <button
+                onClick={openDemo}
+                className="w-full sm:w-auto rounded-full bg-ink px-8 py-3.5 text-sm font-medium text-paper transition hover:bg-black"
+              >
+                Book an institution demo
+              </button>
+              <a
+                href={WA_DEMO}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-line bg-white px-7 py-3.5 text-sm font-medium text-ink transition hover:border-ink hover:bg-paper"
+              >
+                <MessageSquare size={16} className="text-emerald-600" />
+                <span>Chat on WhatsApp</span>
+              </a>
+            </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold font-display tracking-tight leading-tight">
-            The Operating System for Modern Tuition Centres &amp; Academies.
-          </h1>
-
-          <p className="mt-6 text-sm sm:text-lg text-neutral-300 max-w-2xl mx-auto leading-relaxed">
-            From 50-student coaching batches to multi-campus academies with 8,000+ enrolments &mdash; Yaqeel simplifies attendance, fees, exams, and parent communications from one unified mobile platform.
-          </p>
-
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
-            <button
-              onClick={openDemo}
-              className="w-full sm:w-auto px-8 py-3.5 rounded-full bg-white text-neutral-950 font-bold text-sm hover:bg-neutral-100 transition-all shadow-md active:scale-95"
-            >
-              Book an Institution Demo
-            </button>
-            <a
-              href="https://wa.me/918590028549?text=Hi%20Yaqeel%2C%20I%20would%20like%20to%20get%20Yaqeel%20for%20my%20institution."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto px-7 py-3.5 rounded-full bg-[#25D366] hover:bg-[#20BA59] text-white font-bold text-sm transition-all shadow-md flex items-center justify-center gap-2 active:scale-95"
-            >
-              <MessageSquare className="w-4 h-4 fill-current" />
-              <span>Chat on WhatsApp</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Partner Schools */}
-      <Institutions />
-
-      {/* Solutions / Core Pillars */}
-      <section className="py-20 sm:py-28 bg-white border-b border-black/[0.06]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-18">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-neutral-950 font-display">
-              Everything You Need to Run &amp; Grow Your Institute
-            </h2>
-            <p className="mt-3 text-neutral-600 text-sm sm:text-base leading-relaxed">
-              Designed to simplify operations, keep everyone connected, and help your academy scale with confidence.
+            <p className="mt-6 text-[13px] text-mute">
+              Trusted by 8,000+ students &amp; teachers · Free onboarding &amp; teacher training included
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            {/* 01 — Manage Your Institute */}
-            <div className="p-7 sm:p-8 rounded-3xl bg-neutral-50/70 border border-black/[0.07] flex flex-col justify-between hover:border-black/20 hover:shadow-sm transition-all">
-              <div>
-                <span className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-6">
-                  <GraduationCap className="w-6 h-6" />
-                </span>
-                <p className="text-xs font-bold tracking-wider text-blue-600 uppercase mb-1">
-                  01 &mdash; Manage Your Institute
-                </p>
-                <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 font-display mb-6">
-                  Everything in one place
-                </h3>
-                <ul className="space-y-3.5 text-xs sm:text-sm text-neutral-600">
-                  <li className="flex items-center gap-2">&bull; Students &amp; batch management</li>
-                  <li className="flex items-center gap-2">&bull; Attendance &amp; absence tracking</li>
-                  <li className="flex items-center gap-2">&bull; Fees &amp; payment records</li>
-                  <li className="flex items-center gap-2">&bull; Exams, marks &amp; results</li>
-                </ul>
-              </div>
-              <a
-                href="https://wa.me/918590028549?text=Hi%20Yaqeel%2C%20I%20would%20like%20to%20explore%20management%20features%20for%20my%20institute."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 w-full py-3 rounded-xl bg-white border border-neutral-300 text-neutral-900 font-bold text-xs hover:border-neutral-900 transition-colors text-center inline-flex items-center justify-center gap-1.5"
+          {/* Quick Pillars Grid */}
+          <div className="mx-auto mt-20 grid max-w-6xl grid-cols-2 border-y border-line md:grid-cols-4">
+            {QUAD_PILLARS.map((q, i) => (
+              <div
+                key={q.n}
+                className={`p-6 transition hover:bg-white sm:p-8 ${i % 2 ? 'border-l border-line' : ''} ${i > 0 ? 'md:border-l' : ''} ${i > 1 ? 'border-t border-line md:border-t-0' : ''}`}
               >
-                <span>Explore Management</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
+                <span className="text-xs text-mute">{q.n}</span>
+                <h3 className="h-display mt-8 text-xl sm:text-2xl">{q.t}</h3>
+                <p className="mt-1.5 text-[13px] text-mute">{q.d}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ======================================================
+            PARTNER INSTITUTIONS MARQUEE
+           ====================================================== */}
+        <Institutions />
+
+        {/* ======================================================
+            CORE PILLARS / SOLUTIONS
+           ====================================================== */}
+        <section className="px-6 py-28 sm:py-36 border-t border-line">
+          <div className="mx-auto max-w-6xl">
+            <div className="max-w-2xl">
+              <p className="eyebrow">Platform Capabilities</p>
+              <h2 className="h-display mt-5 text-4xl sm:text-5xl">
+                Everything you need to run &amp; grow your academy.
+              </h2>
+              <p className="mt-4 text-base text-mute">
+                Designed to eliminate administrative chaos, keep parents connected, and give directors full visibility into every branch.
+              </p>
             </div>
 
-            {/* 02 — Keep Everyone Connected */}
-            <div className="p-7 sm:p-8 rounded-3xl bg-neutral-950 text-white border border-neutral-800 shadow-xl flex flex-col justify-between relative overflow-hidden">
-              <div>
-                <span className="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center mb-6 shadow-md shadow-blue-600/30">
-                  <Users className="w-6 h-6" />
-                </span>
-                <p className="text-xs font-bold tracking-wider text-blue-400 uppercase mb-1">
-                  02 &mdash; Keep Everyone Connected
-                </p>
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-display mb-6">
-                  Built for students, teachers &amp; parents
-                </h3>
-                <ul className="space-y-3.5 text-xs sm:text-sm text-neutral-300">
-                  <li className="flex items-center gap-2">&bull; Teacher management &amp; access</li>
-                  <li className="flex items-center gap-2">&bull; Student academic progress</li>
-                  <li className="flex items-center gap-2">&bull; Parent updates &amp; notifications</li>
-                  <li className="flex items-center gap-2">&bull; Student Mobile App</li>
-                </ul>
-              </div>
-              <a
-                href="https://wa.me/918590028549?text=Hi%20Yaqeel%2C%20I%20would%20like%20to%20explore%20the%20Yaqeel%20platform%20for%20students%2C%20teachers%20and%20parents."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 w-full py-3 rounded-xl bg-blue-600 text-white font-bold text-xs hover:bg-blue-500 transition-colors text-center inline-flex items-center justify-center gap-1.5 shadow-md shadow-blue-600/20"
-              >
-                <span>Explore Yaqeel Platform</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
+            <div className="mt-16 grid grid-cols-1 gap-6 lg:grid-cols-3">
+              {CORE_SOLUTIONS.map((s) => (
+                <div
+                  key={s.n}
+                  className={`flex flex-col justify-between rounded-3xl p-8 sm:p-10 transition border ${
+                    s.featured
+                      ? 'bg-ink text-paper border-ink shadow-sm'
+                      : 'bg-white text-ink border-line hover:border-ink/40'
+                  }`}
+                >
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className={`text-xs font-mono font-medium ${s.featured ? 'text-paper/60' : 'text-mute'}`}>
+                        {s.n}
+                      </span>
+                      <span className={`text-[11px] uppercase tracking-widest px-2.5 py-0.5 rounded-full ${
+                        s.featured ? 'bg-paper/10 text-paper' : 'bg-paper text-mute border border-line'
+                      }`}>
+                        {s.category}
+                      </span>
+                    </div>
+
+                    <h3 className={`h-display mt-8 text-2xl sm:text-3xl ${s.featured ? 'text-paper' : 'text-ink'}`}>
+                      {s.title}
+                    </h3>
+                    <p className={`mt-3 text-sm leading-relaxed ${s.featured ? 'text-paper/70' : 'text-mute'}`}>
+                      {s.description}
+                    </p>
+
+                    <ul className="mt-8 space-y-3">
+                      {s.points.map((pt) => (
+                        <li key={pt} className="flex gap-2.5 text-[14px] leading-snug">
+                          <Check
+                            size={16}
+                            className={`mt-0.5 shrink-0 ${s.featured ? 'text-accent' : 'text-accent'}`}
+                          />
+                          <span className={s.featured ? 'text-paper/90' : 'text-ink/80'}>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <a
+                    href={s.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className={`group mt-10 inline-flex w-fit items-center gap-1.5 border-b pb-0.5 text-sm font-medium transition ${
+                      s.featured
+                        ? 'border-paper text-paper hover:text-paper/80'
+                        : 'border-ink text-ink hover:text-accent hover:border-accent'
+                    }`}
+                  >
+                    <span>{s.cta}</span>
+                    <ArrowUpRight size={15} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ======================================================
+            WHY ACADEMIES SWITCH (COMPARISON TABLE)
+           ====================================================== */}
+        <section className="px-6 py-24 sm:py-32 border-t border-line bg-white">
+          <div className="mx-auto max-w-5xl">
+            <div className="text-center max-w-2xl mx-auto">
+              <p className="eyebrow">The Modern Alternative</p>
+              <h2 className="h-display mt-5 text-4xl sm:text-5xl">
+                Why tuition centres choose Yaqeel.
+              </h2>
+              <p className="mt-4 text-base text-mute">
+                Compare traditional legacy management software with Yaqeel's mobile-first operating system.
+              </p>
             </div>
 
-            {/* 03 — Grow With Confidence */}
-            <div className="p-7 sm:p-8 rounded-3xl bg-neutral-50/70 border border-black/[0.07] flex flex-col justify-between hover:border-black/20 hover:shadow-sm transition-all">
-              <div>
-                <span className="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-6">
-                  <TrendingUp className="w-6 h-6" />
-                </span>
-                <p className="text-xs font-bold tracking-wider text-emerald-600 uppercase mb-1">
-                  03 &mdash; Grow With Confidence
-                </p>
-                <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 font-display mb-6">
-                  Insights that help you improve
-                </h3>
-                <ul className="space-y-3.5 text-xs sm:text-sm text-neutral-600">
-                  <li className="flex items-center gap-2">&bull; Performance &amp; progress reports</li>
-                  <li className="flex items-center gap-2">&bull; Fee collection insights</li>
-                  <li className="flex items-center gap-2">&bull; Attendance analytics</li>
-                  <li className="flex items-center gap-2">&bull; Reports for smarter decisions</li>
-                </ul>
+            <div className="mt-16 overflow-hidden rounded-3xl border border-line bg-paper">
+              <div className="grid grid-cols-1 divide-y divide-line">
+                {/* Table Header */}
+                <div className="grid grid-cols-12 bg-white/60 p-5 text-xs font-medium uppercase tracking-wider text-mute sm:p-6">
+                  <div className="col-span-4 sm:col-span-3">Feature</div>
+                  <div className="col-span-4 sm:col-span-4 text-mute">Legacy software</div>
+                  <div className="col-span-4 sm:col-span-5 font-semibold text-accent">Yaqeel OS</div>
+                </div>
+
+                {/* Table Rows */}
+                {COMPARISON.map((row) => (
+                  <div key={row.feature} className="grid grid-cols-12 p-5 text-sm sm:p-6 transition hover:bg-white">
+                    <div className="col-span-4 sm:col-span-3 font-medium text-ink pr-3">
+                      {row.feature}
+                    </div>
+                    <div className="col-span-4 sm:col-span-4 text-mute text-xs sm:text-sm pr-3 leading-relaxed">
+                      {row.traditional}
+                    </div>
+                    <div className="col-span-4 sm:col-span-5 font-medium text-ink text-xs sm:text-sm flex items-start gap-2 leading-relaxed">
+                      <Check size={16} className="mt-0.5 shrink-0 text-accent" />
+                      <span>{row.yaqeel}</span>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <a
-                href="https://wa.me/918590028549?text=Hi%20Yaqeel%2C%20I%20would%20like%20to%20discover%20Yaqeel%20reports%20and%20analytics%20for%20my%20institute."
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 w-full py-3 rounded-xl bg-white border border-neutral-300 text-neutral-900 font-bold text-xs hover:border-neutral-900 transition-colors text-center inline-flex items-center justify-center gap-1.5"
+            </div>
+          </div>
+        </section>
+
+        {/* ======================================================
+            KEY IMPACT STATS STRIP
+           ====================================================== */}
+        <section className="px-6 py-20 border-t border-line bg-paper">
+          <div className="mx-auto max-w-6xl grid grid-cols-2 md:grid-cols-4 gap-8">
+            {STATS.map((s) => (
+              <div key={s.value} className="text-center sm:text-left">
+                <div className="h-display text-4xl sm:text-5xl text-ink">{s.value}</div>
+                <p className="mt-2 text-xs sm:text-sm text-mute leading-snug">{s.label}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ======================================================
+            TRANSPARENT ENTERPRISE PRICING
+           ====================================================== */}
+        <section className="px-6 py-24 sm:py-32 border-t border-line">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="eyebrow">Enterprise Pricing</p>
+            <h2 className="h-display mt-5 text-4xl sm:text-5xl">One simple, honest price.</h2>
+            <p className="mt-4 text-base text-mute">
+              No hidden setup fees, no charges per SMS, and no long-term lock-in.
+            </p>
+
+            <div className="mt-12 rounded-3xl border border-line bg-white p-8 sm:p-14 text-center">
+              <div className="h-display text-6xl sm:text-7xl text-ink">₹45 – ₹50</div>
+              <p className="mt-3 text-sm text-mute">per student, per year</p>
+
+              <div className="mx-auto mt-10 max-w-md grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+                <div className="flex items-center gap-2 text-sm text-ink/80">
+                  <Check size={16} className="text-accent shrink-0" />
+                  <span>All core modules included</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-ink/80">
+                  <Check size={16} className="text-accent shrink-0" />
+                  <span>Instant WhatsApp alerts</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-ink/80">
+                  <Check size={16} className="text-accent shrink-0" />
+                  <span>Student &amp; parent app access</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm text-ink/80">
+                  <Check size={16} className="text-accent shrink-0" />
+                  <span>Free teacher training &amp; setup</span>
+                </div>
+              </div>
+
+              <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+                <button
+                  onClick={openDemo}
+                  className="rounded-full bg-ink px-8 py-3.5 text-sm font-medium text-paper transition hover:bg-black"
+                >
+                  Book an institution demo
+                </button>
+                <a
+                  href={WA_PRICING}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-line bg-paper px-8 py-3.5 text-sm font-medium transition hover:border-ink hover:bg-white"
+                >
+                  Request custom volume quote
+                </a>
+              </div>
+
+              <p className="mt-6 text-xs text-mute">
+                Volume pricing available for institutions with 1,000+ students · GST invoices provided
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* ======================================================
+            CLOSING CALLOUT BANNER (Matching AppDownload styling)
+           ====================================================== */}
+        <section className="px-6 pb-28">
+          <div className="mx-auto max-w-6xl rounded-[2rem] bg-ink px-6 py-20 text-center text-paper sm:py-28">
+            <p className="text-xs uppercase tracking-widest text-paper/60 font-medium">Get started today</p>
+            <h2 className="h-display mt-4 text-4xl sm:text-6xl">
+              Ready to modernize<br />your institute?
+            </h2>
+            <p className="mx-auto mt-6 max-w-lg text-[15px] leading-relaxed text-paper/70">
+              Schedule a 15-minute walkthrough. We will import your batches, configure your subjects, and have your teachers ready in 24 hours.
+            </p>
+
+            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <button
+                onClick={openDemo}
+                className="w-full sm:w-auto rounded-full bg-paper px-8 py-3.5 text-sm font-semibold text-ink transition hover:bg-white"
               >
-                <span>Discover Analytics</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                Book a free demo
+              </button>
+              <a
+                href={WA_DEMO}
+                target="_blank"
+                rel="noreferrer"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-paper/20 px-8 py-3.5 text-sm font-medium text-paper transition hover:border-paper/60 hover:bg-white/5"
+              >
+                <MessageSquare size={16} className="text-emerald-400" />
+                <span>Talk to our team on WhatsApp</span>
               </a>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       <Footer />
     </div>
