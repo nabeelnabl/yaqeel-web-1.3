@@ -13,7 +13,7 @@ export const Footer: React.FC = () => (
         <p className="mt-5 max-w-xs text-sm leading-relaxed text-mute">Institute management, made simple.</p>
       </div>
       <div><h4 className={h}>Product</h4><ul className={col}>
-        <li><a href="https://business.yaqeel.com/download">Console</a></li>
+        <li><Link to="/console">Console</Link></li>
         <li><Link to="/business">For business</Link></li>
         <li><Link to="/support">Support</Link></li></ul></div>
       <div><h4 className={h}>Legal</h4><ul className={col}>
@@ -23,6 +23,7 @@ export const Footer: React.FC = () => (
         <li><a href="tel:+919400639420">+91 94006 39420</a></li>
         <li><a href="https://wa.me/918590028549?text=Hi%20Yaqeel%2C%20I%20have%20an%20enquiry%20regarding%20the%20platform." target="_blank" rel="noreferrer">WhatsApp</a></li>
         <li><a href="mailto:support@yaqeel.com">support@yaqeel.com</a></li>
+        <li className="text-xs text-mute/80 pt-0.5">Parappanangadi, Kerala, India</li>
         <li className="flex gap-4 pt-1">
           <a href="https://www.instagram.com/yaqeel.ai/" target="_blank" rel="noreferrer">Instagram</a>
           <a href="https://linkedin.com/company/yaqeel" target="_blank" rel="noreferrer">LinkedIn</a></li></ul></div>
