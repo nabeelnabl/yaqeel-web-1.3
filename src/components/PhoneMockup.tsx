@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 export type FeatureKey = 'attendance' | 'exams' | 'fees' | 'payroll';
 
@@ -50,19 +50,91 @@ const DEMOS: DemoItem[] = [
 const VideoDemo: React.FC<{
   demo: DemoItem;
   isActive: boolean;
-}> = ({ demo, isActive }) => {
+  isInViewport: boolean;
+}> = ({ demo, isActive, isInViewport }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [hasError, setHasError] = useState(false);
+
+  // Play video only when active and currently visible in the viewport.
+  // This prevents mobile browsers from stalling due to decoder limits
+  // when multiple phone mockups exist on the same page.
+  const shouldPlay = isActive && isInViewport && !hasError;
+
+  const restartAndPlay = () => {
+    const video = videoRef.current;
+    if (!video || !shouldPlay) return;
+    try {
+      video.currentTime = 0;
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+      }
+    } catch {
+      // Ignore abort errors during rapid scroll
+    }
+  };
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    if (isActive) {
-      video.play().catch(() => {});
+    // Strict DOM property enforcement for iOS Safari and mobile Chrome
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    video.setAttribute('playsinline', 'true');
+    video.setAttribute('webkit-playsinline', 'true');
+    video.loop = true;
+
+    if (shouldPlay) {
+      const p = video.play();
+      if (p !== undefined) {
+        p.catch(() => {});
+      }
     } else {
       video.pause();
     }
-  }, [isActive]);
+  }, [shouldPlay]);
+
+  // Automatic looping watchdog: catches EOF freezes or browser stalls
+  useEffect(() => {
+    if (!shouldPlay) return;
+
+    const interval = setInterval(() => {
+      const video = videoRef.current;
+      if (!video) return;
+      if (video.paused || video.ended) {
+        restartAndPlay();
+      }
+    }, 600);
+
+    return () => clearInterval(interval);
+  }, [shouldPlay]);
+
+  // Resume playback when mobile user switches back to active browser tab
+  useEffect(() => {
+    const handleVisibility = () => {
+      if (document.visibilityState === 'visible' && shouldPlay) {
+        const video = videoRef.current;
+        if (video) {
+          video.play().catch(() => {});
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibility);
+    return () => document.removeEventListener('visibilitychange', handleVisibility);
+  }, [shouldPlay]);
+
+  if (hasError) {
+    return (
+      <img
+        src={demo.gif}
+        alt={demo.alt}
+        className="w-full h-full object-fill select-none pointer-events-none"
+      />
+    );
+  }
 
   return (
     <video
@@ -72,11 +144,28 @@ const VideoDemo: React.FC<{
       muted
       playsInline
       preload="auto"
+      poster={demo.webp}
+      onError={() => setHasError(true)}
+      onEnded={restartAndPlay}
+      onTimeUpdate={() => {
+        // Seamless loop before reaching final frozen frame
+        const video = videoRef.current;
+        if (video && video.duration && video.currentTime >= video.duration - 0.15) {
+          restartAndPlay();
+        }
+      }}
+      onPause={() => {
+        if (shouldPlay) {
+          const video = videoRef.current;
+          if (video && (video.ended || (video.duration && video.currentTime >= video.duration - 0.2))) {
+            restartAndPlay();
+          }
+        }
+      }}
       className="w-full h-full object-fill select-none pointer-events-none"
       aria-label={demo.alt}
     >
       <source src={demo.webm} type="video/webm" />
-      <source src={demo.webp} type="image/webp" />
       <img
         src={demo.gif}
         alt={demo.alt}
@@ -90,10 +179,10 @@ const VideoDemo: React.FC<{
  * iPhone Pro Phone Mockup with Dynamic Feature Demos
  *
  * Optimized for mobile & desktop:
- * - Pixel-perfect screen alignment with CSS mask clipping (no overflow/leak below frame)
- * - Ground shadow kept outside frame aspect ratio to eliminate letterbox shift
- * - High-speed hardware-accelerated WebM video with WebP/GIF fallback
- * - Seamless opacity cross-fade
+ * - IntersectionObserver to play video only when scrolled into view (prevents mobile decoder exhaustion)
+ * - Automatic watchdog & timeupdate seamless video looping
+ * - Pixel-perfect screen alignment with CSS mask clipping
+ * - Graceful fallback to animated WebP/GIF on low-power devices
  * - Standalone inline mode for mobile sections (renders only 1 demo per section)
  */
 export const PhoneMockup: React.FC<PhoneMockupProps> = ({
@@ -101,13 +190,36 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
   activeFeature = 'attendance',
   mode = 'inline',
 }) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInViewport, setIsInViewport] = useState(true);
+
+  // Monitor viewport visibility so offscreen mockups pause on mobile devices
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        setIsInViewport(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   // On mobile inline sections, only render the specific feature to optimize performance & memory
   const visibleDemos = mode === 'inline' 
     ? DEMOS.filter((d) => d.id === activeFeature) 
     : DEMOS;
 
   return (
-    <div className={`relative flex flex-col items-center justify-center select-none ${className}`}>
+    <div
+      ref={containerRef}
+      className={`relative flex flex-col items-center justify-center select-none ${className}`}
+    >
       {/* Device Frame Wrapper: Fixed strict 389/800 aspect ratio */}
       <div
         className="relative w-[260px] xs:w-[285px] sm:w-[310px] md:w-[330px] lg:h-[min(580px,68vh)] lg:w-auto max-w-[88vw] aspect-[389/800] shrink-0"
@@ -153,7 +265,11 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
                     zIndex: isActive ? 10 : 1,
                   }}
                 >
-                  <VideoDemo demo={demo} isActive={isActive} />
+                  <VideoDemo
+                    demo={demo}
+                    isActive={isActive}
+                    isInViewport={isInViewport}
+                  />
                 </div>
               );
             })}
