@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 export type FeatureKey = 'attendance' | 'exams' | 'fees' | 'payroll';
 
@@ -10,6 +10,7 @@ export interface PhoneMockupProps {
 
 interface DemoItem {
   id: FeatureKey;
+  webm: string;
   webp: string;
   gif: string;
   alt: string;
@@ -18,29 +19,72 @@ interface DemoItem {
 const DEMOS: DemoItem[] = [
   {
     id: 'attendance',
+    webm: '/assets/attendance-screen.webm',
     webp: '/assets/attendance-screen.webp',
     gif: '/assets/attendance-screen.gif',
     alt: 'Attendance Feature Demo',
   },
   {
     id: 'exams',
+    webm: '/assets/exams-screen.webm',
     webp: '/assets/exams-screen.webp',
     gif: '/assets/exams-screen.gif',
     alt: 'Exams Feature Demo',
   },
   {
     id: 'fees',
+    webm: '/assets/fees-screen.webm',
     webp: '/assets/fees-screen.webp',
     gif: '/assets/fees-screen.gif',
     alt: 'Fees Feature Demo',
   },
   {
     id: 'payroll',
+    webm: '/assets/payroll-screen.webm',
     webp: '/assets/payroll-screen.webp',
     gif: '/assets/payroll-screen.gif',
     alt: 'Teachers Payroll Feature Demo',
   },
 ];
+
+const VideoDemo: React.FC<{
+  demo: DemoItem;
+  isActive: boolean;
+}> = ({ demo, isActive }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (isActive) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [isActive]);
+
+  return (
+    <video
+      ref={videoRef}
+      autoPlay
+      loop
+      muted
+      playsInline
+      preload="auto"
+      className="w-full h-full object-fill select-none pointer-events-none"
+      aria-label={demo.alt}
+    >
+      <source src={demo.webm} type="video/webm" />
+      <source src={demo.webp} type="image/webp" />
+      <img
+        src={demo.gif}
+        alt={demo.alt}
+        className="w-full h-full object-fill select-none pointer-events-none"
+      />
+    </video>
+  );
+};
 
 /**
  * iPhone Pro Phone Mockup with Dynamic Feature Demos
@@ -48,7 +92,7 @@ const DEMOS: DemoItem[] = [
  * Optimized for mobile & desktop:
  * - Pixel-perfect screen alignment with CSS mask clipping (no overflow/leak below frame)
  * - Ground shadow kept outside frame aspect ratio to eliminate letterbox shift
- * - High-speed animated WebP with lightweight GIF fallback
+ * - High-speed hardware-accelerated WebM video with WebP/GIF fallback
  * - Seamless opacity cross-fade
  * - Standalone inline mode for mobile sections (renders only 1 demo per section)
  */
@@ -109,16 +153,7 @@ export const PhoneMockup: React.FC<PhoneMockupProps> = ({
                     zIndex: isActive ? 10 : 1,
                   }}
                 >
-                  <picture>
-                    <source type="image/webp" srcSet={demo.webp} />
-                    <img
-                      src={demo.gif}
-                      alt={demo.alt}
-                      className="w-full h-full object-fill select-none pointer-events-none"
-                      loading={isActive ? 'eager' : 'lazy'}
-                      decoding="async"
-                    />
-                  </picture>
+                  <VideoDemo demo={demo} isActive={isActive} />
                 </div>
               );
             })}
