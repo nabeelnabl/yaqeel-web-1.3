@@ -12,7 +12,7 @@ export const Hero: React.FC = () => (
   <section className="px-6 pt-36 sm:pt-44">
     <div className="mx-auto max-w-4xl text-center">
       <p className="eyebrow">Institute management</p>
-      <h1 className="h-display mt-6 text-[2.75rem] sm:text-6xl md:text-7xl">
+      <h1 className="h-display mt-6 text-[2.75rem] sm:text-6xl md:text-7xl text-[#181135]">
         Run your institute<br />from your phone.
       </h1>
       <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
