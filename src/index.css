@@ -139,3 +139,20 @@ html, body { font-family: var(--font-sans); background: var(--color-paper); colo
 ::selection { background: #E4DCFF; }
 .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--color-mute); font-weight: 500; }
 .h-display { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.035em; line-height: 1.04; }
+
+.bg-ink,
+[class*="bg-ink"] {
+  color: var(--color-paper);
+}
+.bg-ink .h-display,
+.bg-ink h1,
+.bg-ink h2,
+.bg-ink h3,
+.bg-ink h4,
+[class*="bg-ink"] .h-display,
+[class*="bg-ink"] h1,
+[class*="bg-ink"] h2,
+[class*="bg-ink"] h3,
+[class*="bg-ink"] h4 {
+  color: var(--color-paper) !important;
+}
