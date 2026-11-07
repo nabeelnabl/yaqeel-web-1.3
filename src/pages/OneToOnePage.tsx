@@ -146,7 +146,7 @@ export const OneToOnePage: React.FC = () => {
         <section className="px-6 py-28">
           <div className="mx-auto max-w-6xl rounded-[2rem] bg-ink px-6 py-20 text-center text-paper sm:py-28">
             <p className="text-xs uppercase tracking-widest text-paper/60 font-medium">Download Yaqeel</p>
-            <h2 className="h-display mt-4 text-4xl sm:text-6xl">
+            <h2 className="h-display mt-4 text-4xl sm:text-6xl text-paper">
               Start your 1-to-1<br />coaching today.
             </h2>
             <p className="mx-auto mt-6 max-w-lg text-[15px] leading-relaxed text-paper/70">
