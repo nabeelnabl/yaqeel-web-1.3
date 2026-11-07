@@ -143,11 +143,11 @@ export const DeleteAccountPage: React.FC = () => {
           </div>
           <div className="flex items-center gap-3">
             <a
-              href="tel:+919400639420"
+              href="tel:+918590028549"
               className="px-4 py-2 rounded-full bg-white border border-neutral-200 text-neutral-900 font-bold hover:border-neutral-900 transition-colors flex items-center gap-1.5"
             >
               <Phone className="w-3.5 h-3.5 text-blue-600" />
-              <span>+91 94006 39420</span>
+              <span>+91 85900 28549</span>
             </a>
             <a
               href="mailto:support@yaqeel.com"

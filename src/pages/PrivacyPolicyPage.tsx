@@ -95,7 +95,7 @@ export const PrivacyPolicyPage: React.FC = () => {
             <div className="mt-4 p-5 rounded-2xl bg-neutral-50 border border-neutral-200/70 text-xs sm:text-sm font-medium space-y-1">
               <p className="text-neutral-900 font-bold">Yaqeel Privacy &amp; Data Compliance</p>
               <p>Email: <a href="mailto:support@yaqeel.com" className="text-blue-600 underline">support@yaqeel.com</a></p>
-              <p>Phone: +91 94006 39420 / +91 85900 28549</p>
+              <p>Phone: +91 85900 28549</p>
             </div>
           </div>
 

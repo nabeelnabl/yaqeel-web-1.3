@@ -13,16 +13,16 @@ export const Footer: React.FC = () => (
         <p className="mt-5 max-w-xs text-sm leading-relaxed text-mute">Institute management, made simple.</p>
       </div>
       <div><h4 className={h}>Product</h4><ul className={col}>
-        <li><Link to="/console">Console</Link></li>
         <li><Link to="/business">For business</Link></li>
         <li><Link to="/1-to-1">1 to 1</Link></li>
         <li><Link to="/parent-app">Parent app</Link></li>
-        <li><Link to="/support">Support</Link></li></ul></div>
+        <li><Link to="/console">Console</Link></li></ul></div>
       <div><h4 className={h}>Legal</h4><ul className={col}>
         <li><Link to="/privacy">Privacy</Link></li><li><Link to="/terms">Terms</Link></li>
         <li><Link to="/refund">Refunds</Link></li><li><Link to="/delete-account">Delete account</Link></li></ul></div>
       <div><h4 className={h}>Contact</h4><ul className={col}>
-        <li><a href="tel:+919400639420">+91 94006 39420</a></li>
+        <li><Link to="/support">Support</Link></li>
+        <li><a href="tel:+918590028549">+91 85900 28549</a></li>
         <li><a href="https://wa.me/918590028549?text=Hi%20Yaqeel%2C%20I%20have%20an%20enquiry%20regarding%20the%20platform." target="_blank" rel="noreferrer">WhatsApp</a></li>
         <li><a href="mailto:support@yaqeel.com">support@yaqeel.com</a></li>
         <li className="text-xs text-mute/80 pt-0.5">Parappanangadi, Kerala, India</li>
