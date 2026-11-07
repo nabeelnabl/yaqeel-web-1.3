@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { YaqeelLogo } from './YaqeelLogo';
 
 const col = 'space-y-3 text-sm text-mute [&_a:hover]:text-ink [&_a]:transition';
-const h = 'mb-5 text-xs uppercase tracking-[0.14em] text-ink';
+const h = 'mb-5 text-xs font-semibold uppercase tracking-[0.14em] text-ink';
 
 export const Footer: React.FC = () => (
   <footer className="border-t border-line px-6 pb-10 pt-20">
