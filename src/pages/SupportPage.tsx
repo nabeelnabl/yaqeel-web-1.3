@@ -14,13 +14,13 @@ import {
 const CONTACT_CHANNELS = [
   {
     n: '01',
-    type: 'Main Helpline',
+    type: 'Phone Support',
     title: '+91 85900 28549',
-    description: 'Speak directly with our primary technical support and institute onboarding desk.',
-    actionLabel: 'Call main helpline',
+    description: 'Speak directly with our technical support and institute onboarding desk.',
+    actionLabel: 'Call support desk',
     href: 'tel:+918590028549',
     icon: Phone,
-    badge: 'Primary Line • Mon – Sat, 9 AM – 7 PM IST',
+    badge: 'Mon – Sat, 9 AM – 7 PM IST',
   },
   {
     n: '02',
@@ -56,36 +56,24 @@ const CONTACT_CHANNELS = [
 
 const CALLING_LINES = [
   {
-    role: 'Main Calling Number',
     number: '+91 85900 28549',
     tel: 'tel:+918590028549',
-    desc: 'Primary institution onboarding, setup & account queries',
-    badge: 'Primary Helpline',
-    isPrimary: true,
+    desc: 'Institution onboarding, setup & account queries',
   },
   {
-    role: 'Secondary Calling Number',
     number: '+91 94006 39420',
     tel: 'tel:+919400639420',
     desc: 'Technical troubleshooting, sync issues & teacher logins',
-    badge: 'Secondary Line',
-    isPrimary: false,
   },
   {
-    role: 'Third Calling Number',
     number: '+91 70120 99097',
     tel: 'tel:+917012099097',
     desc: 'Exam report cards, mark sheets & fee ledger support',
-    badge: 'Line 3',
-    isPrimary: false,
   },
   {
-    role: 'Fourth Calling Number',
     number: '+91 86068 98549',
     tel: 'tel:+918606898549',
     desc: 'Parent notifications, WhatsApp alerts & general assistance',
-    badge: 'Line 4',
-    isPrimary: false,
   },
 ];
 
@@ -196,25 +184,16 @@ export const SupportPage: React.FC = () => {
               {CALLING_LINES.map((line, idx) => (
                 <div
                   key={line.number}
-                  className={`rounded-3xl p-6 sm:p-7 border transition flex flex-col justify-between ${
-                    line.isPrimary
-                      ? 'border-ink/20 bg-paper shadow-xs'
-                      : 'border-line bg-white hover:border-ink/30'
-                  }`}
+                  className="rounded-3xl p-6 sm:p-7 border border-line bg-white hover:border-ink/30 transition flex flex-col justify-between"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="text-xs font-mono text-mute">0{idx + 1}</span>
-                      <span className={`text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full ${
-                        line.isPrimary ? 'bg-accent/10 text-accent border border-accent/20' : 'bg-paper text-mute border border-line'
-                      }`}>
-                        {line.badge}
-                      </span>
+                    <div className="flex items-center justify-between mb-4 text-xs font-mono text-mute">
+                      <span>0{idx + 1}</span>
+                      <PhoneCall size={14} className="text-accent" />
                     </div>
-                    <p className="text-xs uppercase tracking-wider text-mute">{line.role}</p>
                     <a
                       href={line.tel}
-                      className="h-display block mt-1.5 text-xl font-bold text-ink hover:text-accent transition"
+                      className="h-display block text-xl font-bold text-ink hover:text-accent transition"
                     >
                       {line.number}
                     </a>
@@ -227,8 +206,8 @@ export const SupportPage: React.FC = () => {
                     href={line.tel}
                     className="mt-6 inline-flex items-center justify-center gap-2 rounded-full border border-line bg-paper px-4 py-2 text-xs font-semibold text-ink transition hover:border-ink hover:bg-white"
                   >
-                    <PhoneCall size={13} className="text-accent" />
                     <span>Call Now</span>
+                    <ArrowUpRight size={13} className="text-accent" />
                   </a>
                 </div>
               ))}

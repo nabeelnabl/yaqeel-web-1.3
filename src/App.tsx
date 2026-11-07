@@ -10,6 +10,7 @@ import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
 import { DeleteAccountPage } from './pages/DeleteAccountPage';
 import { TermsPage } from './pages/TermsPage';
 import { RefundPage } from './pages/RefundPage';
+import { YaqeelAiPage } from './pages/YaqeelAiPage';
 
 const ScrollToTop: React.FC = () => {
   const { pathname } = useLocation();
@@ -37,6 +38,8 @@ export const App: React.FC = () => {
         <Route path="/parent-app" element={<ParentAppPage />} />
         <Route path="/1-to-1" element={<OneToOnePage />} />
         <Route path="/one-to-one" element={<OneToOnePage />} />
+        <Route path="/yaqeel-ai" element={<YaqeelAiPage />} />
+        <Route path="/ai" element={<YaqeelAiPage />} />
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/delete-account" element={<DeleteAccountPage />} />
         <Route path="/terms" element={<TermsPage />} />
