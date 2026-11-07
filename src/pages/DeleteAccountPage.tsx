@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
-import { AlertTriangle, Trash2, Mail, Phone, CheckCircle2 } from 'lucide-react';
+import { AlertTriangle, Mail, Phone, CheckCircle2 } from 'lucide-react';
 
 export const DeleteAccountPage: React.FC = () => {
   const [phone, setPhone] = useState('');
@@ -25,29 +25,26 @@ export const DeleteAccountPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white text-neutral-900 selection:bg-rose-100 selection:text-neutral-900">
+    <div className="min-h-screen bg-paper text-ink">
       <Navbar />
 
       {/* Header */}
-      <section className="pt-32 pb-16 md:pt-44 md:pb-20 bg-neutral-50/70 border-b border-black/[0.06] text-center relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 text-rose-700 text-xs font-bold border border-rose-200/80 mb-4">
-            <Trash2 className="w-3.5 h-3.5 text-rose-600" />
-            <span>Account Management</span>
-          </div>
+      <section className="pt-36 pb-16 md:pt-44 md:pb-20 border-b border-line text-center">
+        <div className="max-w-4xl mx-auto px-6">
+          <p className="eyebrow mb-4">Account Management</p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-neutral-950 font-display tracking-tight">
+          <h1 className="h-display text-4xl sm:text-5xl md:text-6xl text-ink">
             Delete Account
           </h1>
 
-          <p className="mt-4 text-base sm:text-lg text-neutral-600 max-w-xl mx-auto leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-mute max-w-xl mx-auto leading-relaxed">
             We are sorry to see you go. Deleting your account is permanent &mdash; please read the guidelines below before initiating the request.
           </p>
         </div>
       </section>
 
       {/* Content */}
-      <section className="py-16 sm:py-24 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      <section className="py-16 sm:py-24 max-w-3xl mx-auto px-6 space-y-8">
         
         {/* Warning Callout */}
         <div className="flex items-start gap-4 p-5 sm:p-6 bg-rose-50 border border-rose-200 rounded-3xl">

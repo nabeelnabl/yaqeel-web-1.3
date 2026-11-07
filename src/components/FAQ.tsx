@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Plus } from 'lucide-react';
 
 const ITEMS = [
-  { q: 'What does the ₹45 – ₹50 / year pricing include?', a: 'Everything: daily attendance, fee ledgers, exam gradebooks, teacher payroll, parent WhatsApp alerts and the student mobile app. No setup fees, server charges or extra fees for new batches.' },
+  { q: 'What does the fixed ₹60 / student / year pricing include?', a: 'Everything: daily attendance, fee ledgers, exam gradebooks, teacher payroll, parent WhatsApp alerts and the student mobile app. No setup fees, server charges, or extra fees for new batches. For institutes with over 5,000 students, special discounted volume pricing is available.' },
   { q: 'How do students and parents receive real-time updates?', a: 'Attendance, exam marks and fee receipts sync instantly to the Yaqeel student app and are sent to parents through automated WhatsApp notifications.' },
   { q: 'Can teachers take attendance and enter marks on mobile?', a: 'Yes. Yaqeel is mobile-first. Teachers can mark a class of 60 in under 10 seconds or log scores from a smartphone, with no laptop needed.' },
   { q: 'How quickly can our institute get started?', a: 'Setup takes under 10 minutes. Our team helps over WhatsApp to import student lists, classes, batches and fee structures.' },

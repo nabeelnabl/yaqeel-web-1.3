@@ -42,12 +42,9 @@ export const ConsolePage: React.FC = () => {
 
       <main className="flex-1 px-6 pt-36 pb-24 sm:pt-44 sm:pb-32">
         <div className="mx-auto max-w-4xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-3.5 py-1 text-xs font-medium text-mute">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
-            <span>Web Platform · In Active Development</span>
-          </div>
+          <p className="eyebrow">Web Platform &bull; Coming Soon</p>
 
-          <h1 className="h-display mt-8 text-4xl sm:text-6xl md:text-7xl text-ink">
+          <h1 className="h-display mt-6 text-4xl sm:text-6xl md:text-7xl text-ink">
             Yaqeel Console is<br className="hidden sm:inline" /> coming soon.
           </h1>
 

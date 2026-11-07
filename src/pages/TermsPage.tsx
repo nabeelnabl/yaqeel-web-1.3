@@ -1,36 +1,32 @@
 import React from 'react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
-import { FileText } from 'lucide-react';
 
 export const TermsPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-white text-neutral-900 selection:bg-blue-100 selection:text-neutral-900">
+    <div className="min-h-screen bg-paper text-ink">
       <Navbar />
 
-      <section className="pt-32 pb-16 md:pt-44 md:pb-20 bg-neutral-50/70 border-b border-black/[0.06] text-center relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-200/80 mb-4">
-            <FileText className="w-3.5 h-3.5 text-blue-600" />
-            <span>Service Terms</span>
-          </div>
+      <section className="pt-36 pb-16 md:pt-44 md:pb-20 border-b border-line text-center">
+        <div className="max-w-4xl mx-auto px-6">
+          <p className="eyebrow mb-4">Service Terms</p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-neutral-950 font-display tracking-tight">
+          <h1 className="h-display text-4xl sm:text-5xl md:text-6xl text-ink">
             Terms of Use
           </h1>
 
-          <p className="mt-4 text-base sm:text-lg text-neutral-600 max-w-xl mx-auto leading-relaxed">
+          <p className="mt-4 text-base sm:text-lg text-mute max-w-xl mx-auto leading-relaxed">
             Guidelines and legal responsibilities governing your use of the Yaqeel platform and mobile applications.
           </p>
 
-          <span className="inline-block mt-4 text-xs font-semibold text-neutral-400">
+          <span className="inline-block mt-4 text-xs font-mono text-mute">
             Last updated: May 2026
           </span>
         </div>
       </section>
 
-      <section className="py-16 sm:py-24 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl p-6 sm:p-12 border border-black/[0.07] shadow-xs space-y-8 text-neutral-700 leading-relaxed text-sm sm:text-base">
+      <section className="py-16 sm:py-24 max-w-4xl mx-auto px-6">
+        <div className="bg-white rounded-3xl p-6 sm:p-12 border border-line shadow-xs space-y-8 text-ink/80 leading-relaxed text-sm sm:text-base">
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-neutral-900 font-display mb-3">
               1. Acceptance of Terms

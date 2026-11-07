@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { Institutions } from '../components/Institutions';
 import { 
   ArrowUpRight, 
   Check, 
-  MessageSquare 
+  MessageSquare,
+  Calculator 
 } from 'lucide-react';
 
 const WA_BASE = 'https://wa.me/918590028549';
 const WA_DEMO = `${WA_BASE}?text=${encodeURIComponent('Hi Yaqeel, I would like to book a free demo for my institute.')}`;
-const WA_PRICING = `${WA_BASE}?text=${encodeURIComponent('Hi Yaqeel, I would like to know more about institution pricing and plans.')}`;
 
 const QUAD_PILLARS = [
   { n: '01', t: 'Operations', d: 'One-tap attendance & instant WhatsApp absence alerts in under 10 seconds.' },
@@ -91,7 +91,7 @@ const COMPARISON = [
   {
     feature: 'Pricing & contracts',
     traditional: 'Steep setup fees, annual server maintenance & hidden costs',
-    yaqeel: 'Simple transparent pricing: ₹45 – ₹50 per student / year',
+    yaqeel: 'Fixed transparent pricing: ₹60 per student count / year',
   },
 ];
 
@@ -103,8 +103,19 @@ const STATS = [
 ];
 
 export const BusinessPage: React.FC = () => {
+  const [calcCount, setCalcCount] = useState<number>(500);
   const openDemo = () => {
     window.open(WA_DEMO, '_blank');
+  };
+
+  const isCalcDiscounted = calcCount > 5000;
+  const calcTotal = calcCount * 60;
+
+  const getCalcWaLink = () => {
+    if (isCalcDiscounted) {
+      return `${WA_BASE}?text=${encodeURIComponent(`Hi Yaqeel, our institute has ${calcCount.toLocaleString('en-IN')} students. We would like to get a discounted enterprise volume price quote.`)}`;
+    }
+    return `${WA_BASE}?text=${encodeURIComponent(`Hi Yaqeel, our institute has ${calcCount.toLocaleString('en-IN')} students. We would like to start with the ₹60/student plan.`)}`;
   };
 
   return (
@@ -304,21 +315,163 @@ export const BusinessPage: React.FC = () => {
         </section>
 
         {/* ======================================================
-            TRANSPARENT ENTERPRISE PRICING
+            TRANSPARENT ENTERPRISE PRICING & CALCULATOR
            ====================================================== */}
         <section className="px-6 py-24 sm:py-32 border-t border-line">
           <div className="mx-auto max-w-3xl text-center">
             <p className="eyebrow">Enterprise Pricing</p>
-            <h2 className="h-display mt-5 text-4xl sm:text-5xl">One simple, honest price.</h2>
+            <h2 className="h-display mt-5 text-4xl sm:text-5xl text-ink">Fixed ₹60 per student.</h2>
             <p className="mt-4 text-base text-mute">
-              No hidden setup fees, no charges per SMS, and no long-term lock-in.
+              One fixed annual rate covers all four modules, unlimited teacher accounts, automated WhatsApp parent alerts, and the student mobile app.
             </p>
 
-            <div className="mt-12 rounded-3xl border border-line bg-white p-8 sm:p-14 text-center">
-              <div className="h-display text-6xl sm:text-7xl text-ink">₹45 – ₹50</div>
-              <p className="mt-3 text-sm text-mute">per student, per year</p>
+            <div className="mt-12 rounded-3xl border border-line bg-white p-6 sm:p-12 text-center shadow-xs">
+              <div className="pb-8 border-b border-line">
+                <span className="eyebrow">Standard Rate</span>
+                <div className="h-display mt-3 text-6xl sm:text-7xl text-ink">₹60</div>
+                <p className="mt-2 text-sm text-mute">per student count, per year &bull; billed annually</p>
+              </div>
 
-              <div className="mx-auto mt-10 max-w-md grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
+              {/* Calculator Section */}
+              <div className="pt-8">
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <Calculator size={18} className="text-mute" />
+                  <h3 className="h-display text-xl sm:text-2xl text-ink">Estimate your institute plan</h3>
+                </div>
+                <p className="text-xs sm:text-sm text-mute">
+                  Slide or enter your total active student count:
+                </p>
+
+                <div className="mt-6 flex items-center justify-center gap-3">
+                  <span className="text-sm font-medium text-mute">Students:</span>
+                  <input
+                    type="number"
+                    min="50"
+                    max="50000"
+                    value={calcCount === 0 ? '' : calcCount}
+                    onChange={(e) => {
+                      const v = parseInt(e.target.value, 10);
+                      setCalcCount(isNaN(v) ? 0 : Math.max(0, Math.min(v, 50000)));
+                    }}
+                    placeholder="500"
+                    className="w-36 rounded-2xl border border-line bg-paper px-4 py-2.5 text-center text-xl font-bold text-ink focus:border-ink focus:outline-none transition"
+                    aria-label="Student count"
+                  />
+                </div>
+
+                <div className="mt-6 max-w-md mx-auto px-2">
+                  <input
+                    type="range"
+                    min="50"
+                    max="10000"
+                    step="50"
+                    value={calcCount}
+                    onChange={(e) => {
+                      const v = parseInt(e.target.value, 10);
+                      if (!isNaN(v)) setCalcCount(Math.max(50, Math.min(v, 15000)));
+                    }}
+                    className="w-full h-2 bg-paper rounded-lg appearance-none cursor-pointer accent-ink"
+                    aria-label="Student count range slider"
+                  />
+                  <div className="mt-2 flex justify-between text-[11px] text-mute font-mono">
+                    <span>50</span>
+                    <span>2,500</span>
+                    <span>5,000</span>
+                    <span>10,000+</span>
+                  </div>
+                </div>
+
+                {/* Quick Presets */}
+                <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+                  {[100, 250, 500, 1000, 2500, 5000, 7500].map((count) => {
+                    const label = count === 7500 ? '5,000+' : count.toLocaleString('en-IN');
+                    const isSelected = count === 7500 ? calcCount > 5000 : calcCount === count;
+                    return (
+                      <button
+                        key={count}
+                        type="button"
+                        onClick={() => setCalcCount(count)}
+                        className={`rounded-full px-3.5 py-1 text-xs font-medium transition ${
+                          isSelected
+                            ? 'bg-ink text-paper'
+                            : 'border border-line bg-paper text-ink hover:border-ink'
+                        }`}
+                      >
+                        {label}
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {/* Calculation Output Box */}
+                <div className="mt-8 rounded-2xl border border-line bg-paper p-6 sm:p-8 text-center transition-all">
+                  {isCalcDiscounted ? (
+                    <div>
+                      <div className="inline-block eyebrow text-accent mb-2">
+                        Enterprise Volume Tier
+                      </div>
+                      <div className="h-display text-3xl sm:text-4xl text-ink">
+                        Special Discounted Pricing
+                      </div>
+                      <p className="mt-2 text-sm text-mute max-w-md mx-auto leading-relaxed">
+                        Institutes with {calcCount.toLocaleString('en-IN')} students qualify for our custom discounted volume slabs.
+                      </p>
+
+                      <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+                        <a
+                          href={getCalcWaLink()}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-ink px-8 py-3.5 text-sm font-semibold text-paper transition hover:bg-black shadow-xs"
+                        >
+                          <MessageSquare size={16} className="text-emerald-400" />
+                          <span>Get Discounted Price &mdash; Chat Now</span>
+                        </a>
+                        <button
+                          onClick={openDemo}
+                          className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 rounded-full border border-line bg-white px-7 py-3.5 text-sm font-medium text-ink transition hover:border-ink"
+                        >
+                          <span>Book an institute demo</span>
+                        </button>
+                      </div>
+                      <p className="mt-3 text-xs text-mute">
+                        Direct reply from our founders on WhatsApp within minutes
+                      </p>
+                    </div>
+                  ) : (
+                    <div>
+                      <span className="eyebrow">Estimated Total Cost</span>
+                      <div className="h-display mt-2 text-4xl sm:text-5xl text-ink">
+                        ₹{calcTotal.toLocaleString('en-IN')}
+                        <span className="text-lg sm:text-xl font-normal text-mute"> / year</span>
+                      </div>
+                      <p className="mt-1 text-xs sm:text-sm text-mute">
+                        ₹60 &times; {calcCount.toLocaleString('en-IN')} active students &bull; no extra charges
+                      </p>
+
+                      <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
+                        <button
+                          onClick={openDemo}
+                          className="w-full sm:w-auto rounded-full bg-ink px-8 py-3.5 text-sm font-medium text-paper transition hover:bg-black"
+                        >
+                          Book an institute demo
+                        </button>
+                        <a
+                          href={getCalcWaLink()}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-line bg-white px-7 py-3.5 text-sm font-medium text-ink transition hover:border-ink"
+                        >
+                          <MessageSquare size={15} />
+                          <span>Ask about this plan</span>
+                        </a>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="mx-auto mt-10 max-w-md grid grid-cols-1 sm:grid-cols-2 gap-3 text-left pt-6 border-t border-line">
                 <div className="flex items-center gap-2 text-sm text-ink/80">
                   <Check size={16} className="text-accent shrink-0" />
                   <span>All core modules included</span>
@@ -337,25 +490,8 @@ export const BusinessPage: React.FC = () => {
                 </div>
               </div>
 
-              <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-                <button
-                  onClick={openDemo}
-                  className="rounded-full bg-ink px-8 py-3.5 text-sm font-medium text-paper transition hover:bg-black"
-                >
-                  Book an institution demo
-                </button>
-                <a
-                  href={WA_PRICING}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-full border border-line bg-paper px-8 py-3.5 text-sm font-medium transition hover:border-ink hover:bg-white"
-                >
-                  Request custom volume quote
-                </a>
-              </div>
-
-              <p className="mt-6 text-xs text-mute">
-                Volume pricing available for institutions with 1,000+ students · GST invoices provided
+              <p className="mt-8 text-xs text-mute">
+                No setup fee &bull; No per-SMS charges &bull; Official GST-compliant invoices provided
               </p>
             </div>
           </div>
