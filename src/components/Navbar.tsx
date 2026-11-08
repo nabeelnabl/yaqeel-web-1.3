@@ -229,9 +229,6 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
                         <span className="text-[13px] font-semibold text-ink group-hover:text-accent transition">
                           {item.title}
                         </span>
-                        <span className="text-xs font-mono font-medium text-ink">
-                          {item.rate}
-                        </span>
                       </div>
                       <p className="mt-0.5 text-[11px] text-mute leading-snug">
                         {item.desc}
@@ -363,9 +360,6 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
                     <div className="flex items-center justify-between">
                       <span className="text-sm font-semibold text-ink hover:text-accent">
                         {item.title}
-                      </span>
-                      <span className="text-xs font-mono font-medium text-ink">
-                        {item.rate}
                       </span>
                     </div>
                     <p className="text-xs text-mute leading-snug mt-0.5">
