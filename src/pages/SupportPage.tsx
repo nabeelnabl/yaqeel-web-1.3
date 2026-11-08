@@ -44,13 +44,13 @@ const CONTACT_CHANNELS = [
   },
   {
     n: '04',
-    type: 'Headquarters',
-    title: 'Parappanangadi, Kerala, India',
-    description: 'Malappuram District, Kerala. Serving coaching centres & academies nationwide.',
+    type: 'Location',
+    title: 'Calicut, Kerala, India',
+    description: 'Serving coaching centres & academies nationwide.',
     actionLabel: 'View location',
-    href: 'https://maps.google.com/?q=Parappanangadi,+Kerala,+India',
+    href: 'https://maps.google.com/?q=Calicut,+Kerala,+India',
     icon: MapPin,
-    badge: 'Main Operating Office',
+    badge: 'We are from',
   },
 ];
 
