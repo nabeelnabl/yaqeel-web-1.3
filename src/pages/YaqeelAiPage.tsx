@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
@@ -6,12 +6,106 @@ import { AppBadgesGroup } from '../components/AppBadges';
 import { 
   ArrowLeft, 
   Mic, 
+  Send,
   MessageSquare, 
   Search, 
   ShieldCheck, 
-  UserCheck,
-  CheckCircle2
+  CheckCircle2,
+  Lock,
+  ArrowUpRight
 } from 'lucide-react';
+
+interface StudentSummary {
+  name: string;
+  meta: string;
+  attendance: string;
+  attendanceDetail: string;
+  feeStatus: string;
+  feeDetail: string;
+}
+
+interface Absentee {
+  name: string;
+  roll: string;
+  session: string;
+  status: string;
+}
+
+interface Defaulter {
+  name: string;
+  roll: string;
+  amount: string;
+  days: string;
+}
+
+interface ChatScenario {
+  id: string;
+  chipLabel: string;
+  userQuery: string;
+  isVoice: boolean;
+  voiceDuration: string | null;
+  timestamp: string;
+  lead: string;
+  student?: StudentSummary;
+  absentees?: Absentee[];
+  defaulters?: Defaulter[];
+  note?: string;
+  actionText: string;
+}
+
+const CHAT_SCENARIOS: ChatScenario[] = [
+  {
+    id: 'student-summary',
+    chipLabel: '“Mohammed Shan turnout & fees”',
+    userQuery: 'Show Mohammed Shan\'s attendance and pending fees this month',
+    isVoice: true,
+    voiceDuration: '0:04',
+    timestamp: '09:14 AM',
+    lead: 'Here is the authorized record for Mohammed Shan (Roll #24 • Class 10-A):',
+    student: {
+      name: 'Mohammed Shan',
+      meta: 'Class 10-A • Roll #24 • Guardian: Abdul Rahman',
+      attendance: '92% Turnout',
+      attendanceDetail: 'Present 22 / 24 sessions • Last absent: Oct 28',
+      feeStatus: '₹0 Pending',
+      feeDetail: 'Term 2 fully settled (Receipt #1042)',
+    },
+    actionText: 'Send WhatsApp summary to Guardian',
+  },
+  {
+    id: 'absentees',
+    chipLabel: '“Yesterday\'s absentees in 10A”',
+    userQuery: 'Who was absent in Batch 10A yesterday?',
+    isVoice: true,
+    voiceDuration: '0:03',
+    timestamp: '09:15 AM',
+    lead: '3 students were marked absent in Batch 10A yesterday (Nov 07):',
+    absentees: [
+      { name: 'Adil K.', roll: 'Roll #04', session: 'Morning & Afternoon', status: 'WhatsApp sent' },
+      { name: 'Fathima N.', roll: 'Roll #12', session: 'Morning session', status: 'WhatsApp sent' },
+      { name: 'Rohit Menon', roll: 'Roll #19', session: 'Full Day', status: 'WhatsApp sent' },
+    ],
+    note: 'Automated WhatsApp parent alerts were dispatched at 09:15 AM.',
+    actionText: 'Re-send WhatsApp absentee alert',
+  },
+  {
+    id: 'fee-defaulters',
+    chipLabel: '“Dues > ₹2,000 in Plus Two”',
+    userQuery: 'List students with fee balance above ₹2,000 in Plus Two',
+    isVoice: false,
+    voiceDuration: null,
+    timestamp: '09:16 AM',
+    lead: 'Found 4 students with pending balance above ₹2,000 in Plus Two (Total: ₹11,500):',
+    defaulters: [
+      { name: 'Ananya S.', roll: 'Plus Two Science', amount: '₹3,500', days: '12 days overdue' },
+      { name: 'Vishnu P.', roll: 'Plus Two Commerce', amount: '₹3,000', days: '8 days overdue' },
+      { name: 'Farhan M.', roll: 'Plus Two Science', amount: '₹2,500', days: '5 days overdue' },
+      { name: 'Devika R.', roll: 'Plus Two Commerce', amount: '₹2,500', days: '3 days overdue' },
+    ],
+    note: 'One-tap WhatsApp fee reminder notices prepared for all 4 student guardians.',
+    actionText: 'Send WhatsApp payment reminders',
+  },
+];
 
 const AI_CAPABILITIES = [
   {
@@ -31,25 +125,29 @@ const AI_CAPABILITIES = [
   },
 ];
 
-const SAMPLE_QUERIES = [
-  {
-    query: 'Show Mohammed Shan\'s attendance and pending fees this month',
-    result: 'Present 22/24 sessions (92%). Pending fee: ₹0 (Receipt #1042).',
-  },
-  {
-    query: 'Who was absent in Batch 10A yesterday?',
-    result: '3 students absent. WhatsApp parent alerts sent automatically at 09:15 AM.',
-  },
-  {
-    query: 'List students with fee balance above ₹2,000 in Plus Two',
-    result: '4 students identified. One-tap WhatsApp payment reminder available.',
-  },
-];
-
 export const YaqeelAiPage: React.FC = () => {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const [inputVal, setInputVal] = useState('');
+  const activeScenario = CHAT_SCENARIOS[activeIdx];
+
   const openDemo = () => {
     const text = encodeURIComponent('Hi Yaqeel, I would like to book a free demo for my institute.');
     window.open(`https://wa.me/918590028549?text=${text}`, '_blank');
+  };
+
+  const handleCustomSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inputVal.trim()) return;
+    // Switch to best matching scenario or cycle to give instant feedback
+    const lower = inputVal.toLowerCase();
+    if (lower.includes('fee') || lower.includes('due') || lower.includes('balance') || lower.includes('2000')) {
+      setActiveIdx(2);
+    } else if (lower.includes('absent') || lower.includes('batch') || lower.includes('yesterday')) {
+      setActiveIdx(1);
+    } else {
+      setActiveIdx(0);
+    }
+    setInputVal('');
   };
 
   return (
@@ -65,74 +163,226 @@ export const YaqeelAiPage: React.FC = () => {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-mute sm:text-lg">
-            Search any student record, attendance report, or fee ledger using simple voice or text commands &mdash; strictly secured to your institute&apos;s authorized access.
+            Search any student record, attendance turnout, or fee balance using a natural AI conversational chatbot &mdash; with voice or text, secured strictly to your institute.
           </p>
 
-          {/* Clean Editorial Preview Card */}
-          <div className="mx-auto mt-12 max-w-2xl rounded-3xl border border-line bg-white p-6 sm:p-10 text-left shadow-xs">
-            <div className="flex items-center justify-between pb-6 border-b border-line">
-              <div>
-                <span className="text-xs font-mono uppercase tracking-wider text-mute">
-                  Upcoming Module
-                </span>
-                <h3 className="h-display text-xl text-ink mt-1">Natural Query Interface</h3>
+          {/* Handcrafted AI Chatbot Frame */}
+          <div className="mx-auto mt-12 max-w-2xl rounded-3xl border border-line bg-white shadow-xl overflow-hidden text-left">
+            {/* Window Top Bar */}
+            <div className="border-b border-line bg-paper/60 px-5 py-3.5 flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-line" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-line" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-line" />
+                </div>
+                <div className="h-4 w-px bg-line/80 mx-1" />
+                <div className="flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-xs font-semibold text-ink">Yaqeel AI Chatbot</span>
+                </div>
               </div>
-              <span className="text-xs font-mono text-mute">
-                Coming Soon
-              </span>
+
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-mono text-mute hidden sm:inline">
+                  Authorized Sandbox
+                </span>
+                <span className="text-[11px] font-mono uppercase tracking-wider text-ink border border-line bg-white px-2 py-0.5 rounded-md">
+                  Coming Soon
+                </span>
+              </div>
             </div>
 
-            {/* Query Preview List */}
-            <div className="my-6 space-y-4">
-              <p className="text-xs font-mono uppercase tracking-wider text-mute">
-                Example queries you can speak or type:
-              </p>
-
-              {SAMPLE_QUERIES.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="rounded-2xl border border-line bg-paper p-4 text-left transition hover:border-ink/20"
+            {/* Interactive Scenario Chips */}
+            <div className="border-b border-line/80 bg-paper/30 px-5 py-2.5 flex items-center gap-2 overflow-x-auto text-xs">
+              <span className="text-mute font-mono text-[11px] uppercase tracking-wider shrink-0 mr-1">
+                Sample Queries:
+              </span>
+              {CHAT_SCENARIOS.map((sc, i) => (
+                <button
+                  key={sc.id}
+                  type="button"
+                  onClick={() => setActiveIdx(i)}
+                  className={`shrink-0 px-3 py-1 rounded-full text-xs transition cursor-pointer ${
+                    activeIdx === i
+                      ? 'bg-ink text-paper font-medium'
+                      : 'bg-white border border-line text-mute hover:text-ink hover:border-ink/30'
+                  }`}
                 >
-                  <div className="flex items-start gap-3">
-                    <div className="h-6 w-6 rounded-lg bg-white border border-line flex items-center justify-center text-ink shrink-0 mt-0.5">
-                      <Mic size={13} />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium text-ink">
-                        &ldquo;{item.query}&rdquo;
-                      </p>
-                      <p className="mt-1 text-xs text-mute flex items-center gap-1.5">
-                        <CheckCircle2 size={12} className="text-mute shrink-0" />
-                        <span>{item.result}</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                  {sc.chipLabel}
+                </button>
               ))}
             </div>
 
-            {/* Access & Scope Note */}
-            <div className="rounded-2xl border border-line/60 bg-paper/50 p-4 flex items-start gap-3 text-xs text-mute leading-relaxed">
-              <UserCheck size={16} className="text-ink shrink-0 mt-0.5" />
-              <span>
-                Authorized staff can only query students in their assigned batches and branches. Student privacy and parent contact records remain strictly confidential.
-              </span>
+            {/* Chat Body */}
+            <div className="p-5 sm:p-7 space-y-6 bg-paper/20 min-h-[360px] flex flex-col justify-end">
+              {/* User Message Bubble */}
+              <div className="flex justify-end items-end gap-2.5">
+                <div className="max-w-md rounded-2xl rounded-br-xs bg-ink text-paper p-4 text-left shadow-sm">
+                  {activeScenario.isVoice && (
+                    <div className="flex items-center gap-2 text-paper/70 text-xs mb-1.5 pb-1.5 border-b border-paper/10">
+                      <Mic size={12} className="text-paper shrink-0" />
+                      <span className="font-mono text-[11px]">Voice Query &bull; {activeScenario.voiceDuration}</span>
+                      <span className="ml-auto flex items-center gap-0.5 opacity-60">
+                        <span className="h-2 w-0.5 bg-paper rounded-full" />
+                        <span className="h-3 w-0.5 bg-paper rounded-full" />
+                        <span className="h-4 w-0.5 bg-paper rounded-full" />
+                        <span className="h-2 w-0.5 bg-paper rounded-full" />
+                      </span>
+                    </div>
+                  )}
+                  <p className="text-sm text-paper font-normal leading-relaxed">
+                    &ldquo;{activeScenario.userQuery}&rdquo;
+                  </p>
+                  <p className="mt-1 text-right text-[10px] text-paper/50 font-mono">
+                    {activeScenario.timestamp}
+                  </p>
+                </div>
+              </div>
+
+              {/* Bot Response Message */}
+              <div className="flex items-start gap-3">
+                <div className="h-8 w-8 rounded-xl bg-ink text-paper flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                  Y
+                </div>
+
+                <div className="flex-1 max-w-lg rounded-2xl rounded-tl-xs bg-white border border-line p-4 sm:p-5 shadow-xs space-y-3.5">
+                  <p className="text-xs text-mute font-medium">
+                    {activeScenario.lead}
+                  </p>
+
+                  {/* 1. Student Summary Scenario */}
+                  {activeScenario.student && (
+                    <div className="rounded-xl border border-line bg-paper p-3.5 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm font-semibold text-ink">
+                          {activeScenario.student.name}
+                        </span>
+                        <span className="text-xs font-mono font-medium text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-md">
+                          {activeScenario.student.attendance}
+                        </span>
+                      </div>
+                      <p className="text-xs text-mute">
+                        {activeScenario.student.attendanceDetail}
+                      </p>
+                      <div className="pt-2 border-t border-line/60 flex items-center justify-between text-xs">
+                        <span className="text-mute">
+                          Fee Status: <strong className="text-ink font-semibold">{activeScenario.student.feeStatus}</strong>
+                        </span>
+                        <span className="text-mute font-mono text-[11px]">
+                          Receipt #1042
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 2. Absentees List Scenario */}
+                  {activeScenario.absentees && (
+                    <div className="rounded-xl border border-line bg-paper divide-y divide-line/60 overflow-hidden text-xs">
+                      {activeScenario.absentees.map((st) => (
+                        <div key={st.name} className="p-2.5 flex items-center justify-between">
+                          <div>
+                            <span className="font-semibold text-ink">{st.name}</span>
+                            <span className="text-mute ml-2 text-[11px] font-mono">{st.roll}</span>
+                            <p className="text-mute text-[11px]">{st.session}</p>
+                          </div>
+                          <span className="text-[11px] font-mono text-emerald-700 bg-white border border-line px-2 py-0.5 rounded">
+                            {st.status}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* 3. Fee Defaulters Scenario */}
+                  {activeScenario.defaulters && (
+                    <div className="rounded-xl border border-line bg-paper divide-y divide-line/60 overflow-hidden text-xs">
+                      {activeScenario.defaulters.map((st) => (
+                        <div key={st.name} className="p-2.5 flex items-center justify-between">
+                          <div>
+                            <span className="font-semibold text-ink">{st.name}</span>
+                            <span className="text-mute ml-2 text-[11px]">{st.roll}</span>
+                            <p className="text-mute text-[11px]">{st.days}</p>
+                          </div>
+                          <span className="font-mono font-semibold text-rose-700">
+                            {st.amount}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Optional System Note */}
+                  {activeScenario.note && (
+                    <p className="text-[11px] text-mute flex items-center gap-1.5 leading-snug">
+                      <CheckCircle2 size={12} className="text-emerald-700 shrink-0" />
+                      <span>{activeScenario.note}</span>
+                    </p>
+                  )}
+
+                  {/* Action Link / WhatsApp Hook */}
+                  <div className="pt-2 border-t border-line/60 flex items-center justify-between">
+                    <span className="text-[11px] font-mono text-mute">
+                      Action Available
+                    </span>
+                    <button
+                      type="button"
+                      onClick={openDemo}
+                      className="inline-flex items-center gap-1 text-xs font-semibold text-ink hover:text-accent transition cursor-pointer"
+                    >
+                      <span>{activeScenario.actionText}</span>
+                      <ArrowUpRight size={13} />
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="mt-8 pt-6 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-3">
+            {/* Sleek Chat Input Bar */}
+            <div className="border-t border-line bg-white p-4">
+              <form onSubmit={handleCustomSubmit} className="flex items-center gap-2">
+                <div className="h-9 w-9 rounded-xl border border-line bg-paper flex items-center justify-center text-ink shrink-0">
+                  <Mic size={15} />
+                </div>
+                <input
+                  type="text"
+                  value={inputVal}
+                  onChange={(e) => setInputVal(e.target.value)}
+                  placeholder="Ask Yaqeel AI with voice or text..."
+                  className="flex-1 bg-paper border border-line rounded-xl px-3.5 py-2 text-xs sm:text-sm text-ink placeholder:text-mute focus:outline-none focus:border-ink transition"
+                />
+                <button
+                  type="submit"
+                  aria-label="Send query"
+                  className="h-9 w-9 rounded-xl bg-ink text-paper hover:bg-black flex items-center justify-center shrink-0 transition cursor-pointer"
+                >
+                  <Send size={14} />
+                </button>
+              </form>
+
+              {/* Privacy Sandbox Assurance */}
+              <div className="mt-3 flex items-center gap-2 text-[11px] text-mute">
+                <Lock size={12} className="shrink-0 text-ink" />
+                <span>
+                  Authorized staff can only query students in their assigned batches and branches. Student privacy and parent contact records remain strictly confidential.
+                </span>
+              </div>
+            </div>
+
+            {/* Bottom Actions Card */}
+            <div className="border-t border-line bg-paper/50 px-5 py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
               <Link
                 to="/"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-line px-6 py-2.5 text-xs font-medium text-ink transition hover:border-ink hover:bg-paper"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full border border-line px-5 py-2 text-xs font-medium text-ink transition hover:border-ink hover:bg-paper"
               >
                 <ArrowLeft size={14} />
                 <span>Return to Homepage</span>
               </Link>
               <a
-                href="https://wa.me/918590028549?text=Hi%20Yaqeel%2C%20please%20notify%20me%20when%20Yaqeel%20AI%20is%20ready%20for%20testing."
+                href="https://wa.me/918590028549?text=Hi%20Yaqeel%2C%20please%20notify%20me%20when%20Yaqeel%20AI%20chatbot%20is%20ready%20for%20testing."
                 target="_blank"
                 rel="noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-2.5 text-xs font-medium text-paper transition hover:bg-black"
+                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-2 text-xs font-medium text-paper transition hover:bg-black"
               >
                 <MessageSquare size={14} className="text-paper/80" />
                 <span>Get Notified on WhatsApp</span>
