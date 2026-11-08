@@ -61,8 +61,8 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
   const [open, setOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
   const [pricingOpen, setPricingOpen] = useState(false);
-  const [mobileProductsOpen, setMobileProductsOpen] = useState(true);
-  const [mobilePricingOpen, setMobilePricingOpen] = useState(true);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [mobilePricingOpen, setMobilePricingOpen] = useState(false);
 
   const productsRef = useRef<HTMLDivElement>(null);
   const pricingRef = useRef<HTMLDivElement>(null);
@@ -89,6 +89,14 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Collapse mobile accordions when drawer closes
+  useEffect(() => {
+    if (!open) {
+      setMobileProductsOpen(false);
+      setMobilePricingOpen(false);
+    }
+  }, [open]);
+
   const p = isHome ? '' : '/';
   const demo = () => (onOpenDemo ? onOpenDemo() : window.open(WA, '_blank'));
   const cta = 'rounded-full bg-ink px-5 py-2 text-[13px] font-medium text-paper transition hover:bg-black';
@@ -97,6 +105,8 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
     setOpen(false);
     setProductsOpen(false);
     setPricingOpen(false);
+    setMobileProductsOpen(false);
+    setMobilePricingOpen(false);
 
     if (href.startsWith('/#') || href.startsWith('#')) {
       const hash = href.replace('/', '');
