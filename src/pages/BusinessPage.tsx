@@ -103,7 +103,7 @@ const STATS = [
 ];
 
 export const BusinessPage: React.FC = () => {
-  const [calcCount, setCalcCount] = useState<number>(500);
+  const [calcCount, setCalcCount] = useState<number>(50);
   const openDemo = () => {
     window.open(WA_DEMO, '_blank');
   };
@@ -353,7 +353,7 @@ export const BusinessPage: React.FC = () => {
                       const v = parseInt(e.target.value, 10);
                       setCalcCount(isNaN(v) ? 0 : Math.max(0, Math.min(v, 50000)));
                     }}
-                    placeholder="500"
+                    placeholder="50"
                     className="w-36 rounded-2xl border border-line bg-paper px-4 py-2.5 text-center text-xl font-bold text-ink focus:border-ink focus:outline-none transition"
                     aria-label="Student count"
                   />
@@ -383,7 +383,7 @@ export const BusinessPage: React.FC = () => {
 
                 {/* Quick Presets */}
                 <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-                  {[100, 250, 500, 1000, 2500, 5000, 7500].map((count) => {
+                  {[50, 100, 250, 500, 1000, 2500, 5000, 7500].map((count) => {
                     const label = count === 7500 ? '5,000+' : count.toLocaleString('en-IN');
                     const isSelected = count === 7500 ? calcCount > 5000 : calcCount === count;
                     return (

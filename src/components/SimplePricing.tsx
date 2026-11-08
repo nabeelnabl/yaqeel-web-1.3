@@ -12,10 +12,10 @@ const ITEMS = [
   'Free dedicated onboarding, data import & staff training',
 ];
 
-const PRESETS = [100, 250, 500, 1000, 2500, 5000, 7500];
+const PRESETS = [50, 100, 250, 500, 1000, 2500, 5000, 7500];
 
 export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) => {
-  const [studentCount, setStudentCount] = useState<number>(500);
+  const [studentCount, setStudentCount] = useState<number>(50);
 
   const isDiscounted = studentCount > DISCOUNT_THRESHOLD;
   const totalPrice = studentCount * FIXED_PRICE_PER_STUDENT;
@@ -96,7 +96,7 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
                   max="50000"
                   value={studentCount === 0 ? '' : studentCount}
                   onChange={handleInputChange}
-                  placeholder="500"
+                  placeholder="50"
                   className="w-36 rounded-2xl border border-line bg-paper px-4 py-2.5 text-center text-xl font-bold text-ink focus:border-ink focus:outline-none transition"
                   aria-label="Student count"
                 />
