@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { BusinessPage } from './pages/BusinessPage';
 import { SupportPage } from './pages/SupportPage';
@@ -11,6 +11,7 @@ import { DeleteAccountPage } from './pages/DeleteAccountPage';
 import { TermsPage } from './pages/TermsPage';
 import { RefundPage } from './pages/RefundPage';
 import { YaqeelAiPage } from './pages/YaqeelAiPage';
+import { NotFoundPage } from './pages/NotFoundPage';
 
 const ScrollToTop: React.FC = () => {
   const { pathname, hash } = useLocation();
@@ -46,14 +47,16 @@ export const App: React.FC = () => {
         <Route path="/console" element={<ConsolePage />} />
         <Route path="/parent-app" element={<ParentAppPage />} />
         <Route path="/1-to-1" element={<OneToOnePage />} />
-        <Route path="/one-to-one" element={<OneToOnePage />} />
+        {/* Canonical 301 redirects for legacy aliases */}
+        <Route path="/one-to-one" element={<Navigate to="/1-to-1" replace />} />
         <Route path="/yaqeel-ai" element={<YaqeelAiPage />} />
-        <Route path="/ai" element={<YaqeelAiPage />} />
+        <Route path="/ai" element={<Navigate to="/yaqeel-ai" replace />} />
         <Route path="/privacy" element={<PrivacyPolicyPage />} />
         <Route path="/delete-account" element={<DeleteAccountPage />} />
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/refund" element={<RefundPage />} />
-        <Route path="*" element={<HomePage />} />
+        {/* Dedicated 404 handler prevents soft 404 indexing */}
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

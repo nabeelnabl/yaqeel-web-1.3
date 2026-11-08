@@ -1,10 +1,16 @@
 import React from 'react';
+import { SEO } from '../components/SEO';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 
 export const TermsPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-paper text-ink">
+      <SEO
+        title="Terms of Service | Yaqeel"
+        description="Terms and conditions for utilizing the Yaqeel institute management software and mobile apps."
+        canonical="https://www.yaqeel.com/terms"
+      />
       <Navbar />
 
       <section className="pt-36 pb-16 md:pt-44 md:pb-20 border-b border-line text-center">

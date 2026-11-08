@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SEO } from '../components/SEO';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { Institutions } from '../components/Institutions';
@@ -120,6 +121,11 @@ export const BusinessPage: React.FC = () => {
 
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink">
+      <SEO
+        title="Enterprise Institute & Coaching Centre Management | Yaqeel"
+        description="Scale your academy or coaching centre with batch scheduling, automated fee tracking, and multi-branch operations."
+        canonical="https://www.yaqeel.com/business"
+      />
       <Navbar onOpenDemo={openDemo} />
 
       <main>

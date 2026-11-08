@@ -1,10 +1,16 @@
 import React from 'react';
+import { SEO } from '../components/SEO';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 
 export const RefundPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-paper text-ink">
+      <SEO
+        title="Refund Policy | Yaqeel"
+        description="Yaqeel's transparent subscription cancellation and refund terms for tuition centres and academies."
+        canonical="https://www.yaqeel.com/refund"
+      />
       <Navbar />
 
       <section className="pt-36 pb-16 md:pt-44 md:pb-20 border-b border-line text-center">

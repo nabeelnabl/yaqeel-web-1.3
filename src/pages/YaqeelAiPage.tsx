@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/SEO';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { AppBadgesGroup } from '../components/AppBadges';
@@ -152,6 +153,11 @@ export const YaqeelAiPage: React.FC = () => {
 
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink flex flex-col justify-between">
+      <SEO
+        title="Yaqeel AI — Conversational Student & Institute Search by Voice"
+        description="Natural language chatbot for institute intelligence. Search student attendance, marks, and fees with voice or text."
+        canonical="https://www.yaqeel.com/yaqeel-ai"
+      />
       <Navbar onOpenDemo={openDemo} />
 
       <main className="flex-1 px-6 pt-36 pb-24 sm:pt-44 sm:pb-32">

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SEO } from '../components/SEO';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { AppBadgesGroup } from '../components/AppBadges';
@@ -82,6 +83,11 @@ export const OneToOnePage: React.FC = () => {
 
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink">
+      <SEO
+        title="1-to-1 & Home Tutoring Management Platform | Yaqeel"
+        description="Streamlined management built for independent educators and 1-to-1 private tutors. Hourly logs, turnout, and billing."
+        canonical="https://www.yaqeel.com/1-to-1"
+      />
       <Navbar onOpenDemo={openDemo} />
 
       <main>

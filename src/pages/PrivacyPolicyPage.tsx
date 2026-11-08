@@ -1,10 +1,16 @@
 import React from 'react';
+import { SEO } from '../components/SEO';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 
 export const PrivacyPolicyPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-paper text-ink">
+      <SEO
+        title="Privacy Policy | Yaqeel"
+        description="Yaqeel's privacy policy and data governance practices for educational institutes, parents, and students."
+        canonical="https://www.yaqeel.com/privacy"
+      />
       <Navbar />
 
       {/* Header */}

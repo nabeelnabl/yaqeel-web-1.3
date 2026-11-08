@@ -1,4 +1,5 @@
 import React from 'react';
+import { SEO } from '../components/SEO';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { FAQ } from '../components/FAQ';
@@ -104,6 +105,11 @@ export const SupportPage: React.FC = () => {
 
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink">
+      <SEO
+        title="Official Customer Support & Contact | Yaqeel"
+        description="Get in touch with Yaqeel support desk via phone, WhatsApp, or email. We are from Calicut, Kerala, India."
+        canonical="https://www.yaqeel.com/support"
+      />
       <Navbar onOpenDemo={openDemo} />
 
       <main>

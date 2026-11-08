@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SEO } from '../components/SEO';
 import { Navbar } from '../components/Navbar';
 import { Hero } from '../components/Hero';
 import { Features } from '../components/Features';
@@ -19,6 +20,11 @@ export const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink">
+      <SEO
+        title="Yaqeel — Modern Tuition & Institute Management App"
+        description="Run your tuition centre smoothly. Manage student attendance, fees, exams, and teacher payroll from your mobile phone."
+        canonical="https://www.yaqeel.com/"
+      />
       <Navbar onOpenDemo={openDemo} />
       <main>
         <Hero />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { SEO } from '../components/SEO';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { AppBadgesGroup } from '../components/AppBadges';
@@ -41,6 +42,11 @@ export const ParentAppPage: React.FC = () => {
 
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink">
+      <SEO
+        title="Yaqeel Parent App — Student Attendance & Academic Reports"
+        description="Keep parents engaged with real-time WhatsApp absence alerts, exam mark sheets, and instant digital fee receipts."
+        canonical="https://www.yaqeel.com/parent-app"
+      />
       <Navbar onOpenDemo={openDemo} />
 
       <main>

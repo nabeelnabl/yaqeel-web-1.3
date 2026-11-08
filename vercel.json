@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    {
+      "source": "/one-to-one",
+      "destination": "/1-to-1",
+      "permanent": true
+    },
+    {
+      "source": "/ai",
+      "destination": "/yaqeel-ai",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

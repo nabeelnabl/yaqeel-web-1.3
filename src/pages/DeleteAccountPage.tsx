@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SEO } from '../components/SEO';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { AlertTriangle, Mail, Phone, CheckCircle2 } from 'lucide-react';
@@ -26,6 +27,11 @@ export const DeleteAccountPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-paper text-ink">
+      <SEO
+        title="Account Deletion Request | Yaqeel"
+        description="Submit an official request to permanently delete your Yaqeel administrator account and institute data."
+        canonical="https://www.yaqeel.com/delete-account"
+      />
       <Navbar />
 
       {/* Header */}

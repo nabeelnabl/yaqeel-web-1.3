@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/SEO';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
 import { AppBadgesGroup } from '../components/AppBadges';
@@ -38,6 +39,11 @@ export const ConsolePage: React.FC = () => {
 
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink flex flex-col justify-between">
+      <SEO
+        title="Yaqeel Console — Multi-Branch Desktop Administrative Headquarters"
+        description="Dedicated desktop command centre for academy directors, accountants, and multi-campus management."
+        canonical="https://www.yaqeel.com/console"
+      />
       <Navbar onOpenDemo={openDemo} />
 
       <main className="flex-1 px-6 pt-36 pb-24 sm:pt-44 sm:pb-32">
