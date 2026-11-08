@@ -38,6 +38,21 @@ export const PRODUCTS = [
   },
 ];
 
+export const PRICING_OPTIONS = [
+  {
+    title: 'Normal Tuition Rate',
+    rate: '₹60 / student',
+    desc: 'For batches, coaching centres & academies',
+    href: '/#pricing',
+  },
+  {
+    title: '1 to 1 Rate',
+    rate: '₹150 / student',
+    desc: 'For individual private tutors (min. 20 students)',
+    href: '/1-to-1#pricing',
+  },
+];
+
 export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -45,8 +60,12 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [productsOpen, setProductsOpen] = useState(false);
+  const [pricingOpen, setPricingOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(true);
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const [mobilePricingOpen, setMobilePricingOpen] = useState(true);
+
+  const productsRef = useRef<HTMLDivElement>(null);
+  const pricingRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 12);
@@ -55,11 +74,15 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
     return () => window.removeEventListener('scroll', on);
   }, []);
 
-  // Close dropdown when clicking outside
+  // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+      const target = e.target as Node;
+      if (productsRef.current && !productsRef.current.contains(target)) {
         setProductsOpen(false);
+      }
+      if (pricingRef.current && !pricingRef.current.contains(target)) {
+        setPricingOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -73,6 +96,8 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
   const handleNav = (href: string) => {
     setOpen(false);
     setProductsOpen(false);
+    setPricingOpen(false);
+
     if (href.startsWith('/#') || href.startsWith('#')) {
       const hash = href.replace('/', '');
       if (isHome) {
@@ -85,6 +110,20 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
       navigate(`/${hash}`);
       return;
     }
+
+    if (href.includes('#')) {
+      const [path, hash] = href.split('#');
+      if (location.pathname === path) {
+        const el = document.getElementById(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+          return;
+        }
+      }
+      navigate(href);
+      return;
+    }
+
     navigate(href);
   };
 
@@ -95,7 +134,7 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
           <YaqeelLogo variant="horizontal" theme="dark" size="md" />
         </Link>
 
-        {/* Desktop Navigation in requested order: Features, Products, Pricing, Reviews, FAQ, Support */}
+        {/* Desktop Navigation: Features, Products, Pricing, Reviews, FAQ, Support */}
         <nav className="hidden items-center gap-8 md:flex">
           {/* 1. Features */}
           <button
@@ -108,7 +147,7 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
 
           {/* 2. Products Dropdown */}
           <div
-            ref={dropdownRef}
+            ref={productsRef}
             className="relative"
             onMouseEnter={() => setProductsOpen(true)}
             onMouseLeave={() => setProductsOpen(false)}
@@ -126,7 +165,6 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
               />
             </button>
 
-            {/* Desktop Dropdown Panel */}
             {productsOpen && (
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 w-72">
                 <div className="rounded-2xl border border-line bg-white/95 p-2 backdrop-blur-xl shadow-xl space-y-1">
@@ -157,14 +195,53 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
             )}
           </div>
 
-          {/* 3. Pricing */}
-          <button
-            type="button"
-            onClick={() => handleNav(`${p}#pricing`)}
-            className="text-[13px] text-mute transition hover:text-ink cursor-pointer"
+          {/* 3. Pricing Dropdown */}
+          <div
+            ref={pricingRef}
+            className="relative"
+            onMouseEnter={() => setPricingOpen(true)}
+            onMouseLeave={() => setPricingOpen(false)}
           >
-            Pricing
-          </button>
+            <button
+              type="button"
+              onClick={() => setPricingOpen(!pricingOpen)}
+              className="inline-flex items-center gap-1 text-[13px] text-mute transition hover:text-ink cursor-pointer py-2"
+              aria-expanded={pricingOpen}
+            >
+              <span>Pricing</span>
+              <ChevronDown
+                size={14}
+                className={`transition-transform duration-200 ${pricingOpen ? 'rotate-180 text-ink' : ''}`}
+              />
+            </button>
+
+            {pricingOpen && (
+              <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 z-50 w-72">
+                <div className="rounded-2xl border border-line bg-white/95 p-2 backdrop-blur-xl shadow-xl space-y-1">
+                  {PRICING_OPTIONS.map((item) => (
+                    <button
+                      key={item.href}
+                      type="button"
+                      onClick={() => handleNav(item.href)}
+                      className="group flex flex-col w-full text-left rounded-xl p-2.5 transition hover:bg-paper cursor-pointer"
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="text-[13px] font-semibold text-ink group-hover:text-accent transition">
+                          {item.title}
+                        </span>
+                        <span className="text-[11px] font-mono font-medium text-accent bg-accent/10 px-2 py-0.5 rounded-full border border-accent/20">
+                          {item.rate}
+                        </span>
+                      </div>
+                      <p className="mt-0.5 text-[11px] text-mute leading-snug">
+                        {item.desc}
+                      </p>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
 
           {/* 4. Reviews */}
           <button
@@ -260,14 +337,45 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
             )}
           </div>
 
-          {/* 3. Pricing */}
-          <button
-            type="button"
-            onClick={() => handleNav(`${p}#pricing`)}
-            className="block w-full text-left border-b border-line py-3.5 text-base font-medium text-ink transition hover:text-accent"
-          >
-            Pricing
-          </button>
+          {/* 3. Pricing Accordion */}
+          <div className="border-b border-line py-3">
+            <button
+              type="button"
+              onClick={() => setMobilePricingOpen(!mobilePricingOpen)}
+              className="flex items-center justify-between w-full text-left text-base font-medium text-ink py-1"
+            >
+              <span>Pricing</span>
+              <ChevronDown
+                size={16}
+                className={`transition-transform duration-200 text-mute ${mobilePricingOpen ? 'rotate-180 text-ink' : ''}`}
+              />
+            </button>
+
+            {mobilePricingOpen && (
+              <div className="mt-2 pl-3 space-y-2 border-l border-line/80 my-2">
+                {PRICING_OPTIONS.map((item) => (
+                  <button
+                    key={item.href}
+                    type="button"
+                    onClick={() => handleNav(item.href)}
+                    className="block w-full text-left py-1.5"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-semibold text-ink hover:text-accent">
+                        {item.title}
+                      </span>
+                      <span className="text-[10px] font-mono font-medium text-accent bg-accent/10 px-2 py-0.5 rounded-full border border-accent/20">
+                        {item.rate}
+                      </span>
+                    </div>
+                    <p className="text-xs text-mute leading-snug mt-0.5">
+                      {item.desc}
+                    </p>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
 
           {/* 4. Reviews */}
           <button

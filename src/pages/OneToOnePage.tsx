@@ -187,7 +187,7 @@ export const OneToOnePage: React.FC = () => {
         {/* ======================================================
             1-TO-1 PRICING & SMALL CALCULATOR SECTION
            ====================================================== */}
-        <section className="px-6 py-24 sm:py-32 border-b border-line">
+        <section id="pricing" className="scroll-mt-16 px-6 py-24 sm:py-32 border-b border-line">
           <div className="mx-auto max-w-3xl text-center">
             <p className="eyebrow">1-to-1 Pricing</p>
             <h2 className="h-display mt-5 text-4xl sm:text-5xl text-ink">

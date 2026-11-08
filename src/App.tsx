@@ -13,15 +13,24 @@ import { RefundPage } from './pages/RefundPage';
 import { YaqeelAiPage } from './pages/YaqeelAiPage';
 
 const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    if (hash) {
+      setTimeout(() => {
+        const el = document.querySelector(hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 60);
+      return;
+    }
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: 'instant' as ScrollBehavior
     });
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null;
 };
