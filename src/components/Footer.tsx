@@ -29,7 +29,7 @@ export const Footer: React.FC = () => (
         <li><a href="mailto:support@yaqeel.com">support@yaqeel.com</a></li>
         <li className="text-xs text-mute/80 pt-0.5">Calicut, Kerala, India</li>
         <li className="flex gap-4 pt-1">
-          <a href="https://www.instagram.com/yaqeel.ai/" target="_blank" rel="noreferrer">Instagram</a>
+          <a href="https://www.instagram.com/yaqeel.app/" target="_blank" rel="noreferrer">Instagram</a>
           <a href="https://linkedin.com/company/yaqeel" target="_blank" rel="noreferrer">LinkedIn</a></li></ul></div>
     </div>
     <p className="mx-auto mt-16 max-w-6xl border-t border-line pt-6 text-xs text-mute">© {new Date().getFullYear()} Yaqeel. All rights reserved.</p>
