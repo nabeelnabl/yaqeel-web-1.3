@@ -82,7 +82,7 @@ export const ConsolePage: React.FC = () => {
                 rel="noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-2.5 text-xs font-medium text-paper transition hover:bg-black"
               >
-                <MessageSquare size={14} className="text-emerald-400" />
+                <MessageSquare size={14} className="text-paper/80" />
                 <span>Request Early Console Access</span>
               </a>
             </div>

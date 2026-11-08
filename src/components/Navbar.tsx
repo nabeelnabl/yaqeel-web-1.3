@@ -180,7 +180,7 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
                           {prod.title}
                         </span>
                         {prod.badge && (
-                          <span className="text-[10px] font-mono uppercase tracking-wider text-accent bg-accent/10 px-2 py-0.5 rounded-full border border-accent/20">
+                          <span className="text-[11px] font-mono text-mute">
                             {prod.badge}
                           </span>
                         )}
@@ -229,7 +229,7 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
                         <span className="text-[13px] font-semibold text-ink group-hover:text-accent transition">
                           {item.title}
                         </span>
-                        <span className="text-[11px] font-mono font-medium text-accent bg-accent/10 px-2 py-0.5 rounded-full border border-accent/20">
+                        <span className="text-xs font-mono font-medium text-ink">
                           {item.rate}
                         </span>
                       </div>
@@ -323,7 +323,7 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
                         {prod.title}
                       </span>
                       {prod.badge && (
-                        <span className="text-[9px] font-mono uppercase tracking-wider text-accent bg-accent/10 px-2 py-0.5 rounded-full border border-accent/20">
+                        <span className="text-xs font-mono text-mute">
                           {prod.badge}
                         </span>
                       )}
@@ -364,7 +364,7 @@ export const Navbar: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) =>
                       <span className="text-sm font-semibold text-ink hover:text-accent">
                         {item.title}
                       </span>
-                      <span className="text-[10px] font-mono font-medium text-accent bg-accent/10 px-2 py-0.5 rounded-full border border-accent/20">
+                      <span className="text-xs font-mono font-medium text-ink">
                         {item.rate}
                       </span>
                     </div>

@@ -9,33 +9,41 @@ import {
   MessageSquare, 
   Search, 
   ShieldCheck, 
-  Sparkles, 
-  UserCheck 
+  UserCheck,
+  CheckCircle2
 } from 'lucide-react';
 
 const AI_CAPABILITIES = [
   {
     icon: Mic,
     title: 'Voice & Text Search',
-    desc: 'Ask questions naturally by voice or text. Just tap the mic and speak, or type a quick prompt &mdash; no complicated menus or manual filtering required.',
+    desc: 'Ask questions naturally by voice or text. Speak in Malayalam or English without navigating complex tables or manual filters.',
   },
   {
     icon: Search,
     title: 'Instant Student Lookup',
-    desc: 'Search any student across your institute in seconds. Retrieve attendance turnout, exam score history, fee ledger balances, and parent contact information instantly.',
+    desc: 'Retrieve attendance turnout, test mark trends, fee ledger balances, and parent contact details across your institute in seconds.',
   },
   {
     icon: ShieldCheck,
-    title: 'Role-Based Privacy',
-    desc: 'Strict access controls guarantee that teachers and administrators can only query and view data for students and classes they are officially authorized to access.',
+    title: 'Strict Role-Based Privacy',
+    desc: 'Staff members only access data for batches and students they are officially authorized to view. Institute records remain fully protected.',
   },
 ];
 
 const SAMPLE_QUERIES = [
-  'Who was absent in Batch 10A yesterday?',
-  'What is Rahul\'s total pending fee balance?',
-  'Show top 5 scorers in Physics Unit Test 2',
-  'WhatsApp absentee alert to Ananya\'s father',
+  {
+    query: 'Show Mohammed Shan\'s attendance and pending fees this month',
+    result: 'Present 22/24 sessions (92%). Pending fee: ₹0 (Receipt #1042).',
+  },
+  {
+    query: 'Who was absent in Batch 10A yesterday?',
+    result: '3 students absent. WhatsApp parent alerts sent automatically at 09:15 AM.',
+  },
+  {
+    query: 'List students with fee balance above ₹2,000 in Plus Two',
+    result: '4 students identified. One-tap WhatsApp payment reminder available.',
+  },
 ];
 
 export const YaqeelAiPage: React.FC = () => {
@@ -50,109 +58,68 @@ export const YaqeelAiPage: React.FC = () => {
 
       <main className="flex-1 px-6 pt-36 pb-24 sm:pt-44 sm:pb-32">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="eyebrow">Yaqeel AI &bull; Coming Soon</p>
+          <p className="eyebrow">Yaqeel AI &bull; In Development</p>
 
           <h1 className="h-display mt-6 text-4xl sm:text-6xl md:text-7xl text-ink">
-            Yaqeel AI is<br className="hidden sm:inline" /> coming soon.
+            Institute intelligence,<br className="hidden sm:inline" /> powered by voice.
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-mute sm:text-lg">
-            Instant institute intelligence powered by a conversational chatbot. Search any student and retrieve authorized institute records in seconds &mdash; with voice or text.
+            Search any student record, attendance report, or fee ledger using simple voice or text commands &mdash; strictly secured to your institute&apos;s authorized access.
           </p>
 
-          {/* Interactive AI Preview Card */}
+          {/* Clean Editorial Preview Card */}
           <div className="mx-auto mt-12 max-w-2xl rounded-3xl border border-line bg-white p-6 sm:p-10 text-left shadow-xs">
             <div className="flex items-center justify-between pb-6 border-b border-line">
-              <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-2xl bg-paper border border-line flex items-center justify-center text-accent">
-                  <Sparkles size={20} />
-                </div>
-                <div>
-                  <h3 className="h-display text-lg text-ink">Yaqeel AI Assistant</h3>
-                  <p className="text-xs text-mute">Search with voice or text</p>
-                </div>
+              <div>
+                <span className="text-xs font-mono uppercase tracking-wider text-mute">
+                  Upcoming Module
+                </span>
+                <h3 className="h-display text-xl text-ink mt-1">Natural Query Interface</h3>
               </div>
-              <span className="text-[11px] font-mono uppercase tracking-wider text-accent bg-accent/10 px-2.5 py-1 rounded-full border border-accent/20">
-                In Development
+              <span className="text-xs font-mono text-mute">
+                Coming Soon
               </span>
             </div>
 
-            {/* Conversational Simulation */}
+            {/* Query Preview List */}
             <div className="my-6 space-y-4">
-              {/* User Voice Query */}
-              <div className="flex items-start justify-end gap-3">
-                <div className="rounded-2xl rounded-tr-sm bg-ink px-4 py-3 text-sm text-paper max-w-sm">
-                  <div className="flex items-center gap-2 text-paper/70 text-xs mb-1">
-                    <Mic size={12} className="text-accent" />
-                    <span>Voice Input</span>
-                  </div>
-                  <p>&ldquo;Show Mohammed Shan&apos;s attendance and fee status for this month.&rdquo;</p>
-                </div>
-              </div>
-
-              {/* Bot Response */}
-              <div className="flex items-start gap-3">
-                <div className="h-8 w-8 rounded-full bg-paper border border-line flex items-center justify-center text-accent shrink-0 mt-1">
-                  <Sparkles size={14} />
-                </div>
-                <div className="rounded-2xl rounded-tl-sm bg-paper border border-line p-4 text-xs sm:text-sm text-ink max-w-md space-y-2">
-                  <div className="flex items-center justify-between font-semibold">
-                    <span className="flex items-center gap-1.5 text-ink">
-                      <UserCheck size={14} className="text-accent" />
-                      Mohammed Shan &bull; Roll #24
-                    </span>
-                    <span className="text-emerald-700 font-mono text-[11px]">94% Turnout</span>
-                  </div>
-                  <p className="text-mute text-xs">
-                    Present: 22 / 24 sessions &bull; Last absent: Oct 28 (Forenoon)
-                  </p>
-                  <div className="pt-2 border-t border-line/60 flex items-center justify-between text-xs">
-                    <span className="text-mute">Pending Fee: ₹0 (Fully Paid)</span>
-                    <span className="text-accent font-medium">Receipt #1042</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Example Queries */}
-            <div className="pt-4 border-t border-line">
-              <p className="text-[11px] font-mono uppercase tracking-wider text-mute mb-2.5">
-                Try asking questions like:
+              <p className="text-xs font-mono uppercase tracking-wider text-mute">
+                Example queries you can speak or type:
               </p>
-              <div className="flex flex-wrap gap-2">
-                {SAMPLE_QUERIES.map((q) => (
-                  <span
-                    key={q}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-line bg-paper px-3 py-1 text-xs text-mute"
-                  >
-                    <Search size={11} className="text-accent" />
-                    <span>{q}</span>
-                  </span>
-                ))}
-              </div>
-            </div>
 
-            {/* Input Mock Bar */}
-            <div className="mt-6 flex items-center gap-2 rounded-2xl border border-line bg-paper px-4 py-2.5">
-              <Search size={16} className="text-mute shrink-0" />
-              <input
-                type="text"
-                disabled
-                placeholder="Ask Yaqeel AI with voice or text..."
-                className="w-full bg-transparent text-xs sm:text-sm text-ink placeholder:text-mute focus:outline-none cursor-not-allowed"
-              />
-              <div className="flex items-center gap-1.5 shrink-0">
-                <button
-                  type="button"
-                  disabled
-                  className="p-1.5 rounded-full bg-accent text-paper hover:bg-accent/90 transition"
-                  aria-label="Voice input preview"
+              {SAMPLE_QUERIES.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="rounded-2xl border border-line bg-paper p-4 text-left transition hover:border-ink/20"
                 >
-                  <Mic size={14} />
-                </button>
-              </div>
+                  <div className="flex items-start gap-3">
+                    <div className="h-6 w-6 rounded-lg bg-white border border-line flex items-center justify-center text-ink shrink-0 mt-0.5">
+                      <Mic size={13} />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-ink">
+                        &ldquo;{item.query}&rdquo;
+                      </p>
+                      <p className="mt-1 text-xs text-mute flex items-center gap-1.5">
+                        <CheckCircle2 size={12} className="text-mute shrink-0" />
+                        <span>{item.result}</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
 
+            {/* Access & Scope Note */}
+            <div className="rounded-2xl border border-line/60 bg-paper/50 p-4 flex items-start gap-3 text-xs text-mute leading-relaxed">
+              <UserCheck size={16} className="text-ink shrink-0 mt-0.5" />
+              <span>
+                Authorized staff can only query students in their assigned batches and branches. Student privacy and parent contact records remain strictly confidential.
+              </span>
+            </div>
+
+            {/* Action Buttons */}
             <div className="mt-8 pt-6 border-t border-line flex flex-col sm:flex-row items-center justify-between gap-3">
               <Link
                 to="/"
@@ -162,13 +129,13 @@ export const YaqeelAiPage: React.FC = () => {
                 <span>Return to Homepage</span>
               </Link>
               <a
-                href="https://wa.me/918590028549?text=Hi%20Yaqeel%2C%20I%20am%20interested%20in%20early%20access%20to%20Yaqeel%20AI."
+                href="https://wa.me/918590028549?text=Hi%20Yaqeel%2C%20please%20notify%20me%20when%20Yaqeel%20AI%20is%20ready%20for%20testing."
                 target="_blank"
                 rel="noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-2.5 text-xs font-medium text-paper transition hover:bg-black"
               >
-                <MessageSquare size={14} className="text-emerald-400" />
-                <span>Request Early Access on WhatsApp</span>
+                <MessageSquare size={14} className="text-paper/80" />
+                <span>Get Notified on WhatsApp</span>
               </a>
             </div>
           </div>
@@ -184,7 +151,7 @@ export const YaqeelAiPage: React.FC = () => {
                     key={c.title}
                     className="rounded-3xl border border-line bg-white p-7 transition hover:border-ink/30"
                   >
-                    <div className="h-10 w-10 rounded-2xl bg-paper border border-line flex items-center justify-center text-accent mb-6">
+                    <div className="h-10 w-10 rounded-2xl bg-paper border border-line flex items-center justify-center text-ink mb-6">
                       <Icon size={20} />
                     </div>
                     <h3 className="h-display text-xl text-ink">{c.title}</h3>
@@ -215,4 +182,5 @@ export const YaqeelAiPage: React.FC = () => {
     </div>
   );
 };
+
 export default YaqeelAiPage;
