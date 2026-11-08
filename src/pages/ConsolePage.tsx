@@ -22,7 +22,7 @@ const COMING_FEATURES = [
   {
     icon: BarChart3,
     title: 'Advanced Financial Audits',
-    desc: 'Comprehensive fee collection ledgers, automated defaulter cohorts, and one-click GST tax-compliant accounting exports.',
+    desc: 'Comprehensive fee collection ledgers, lists of pending fees, and one-click GST tax-compliant accounting exports.',
   },
   {
     icon: ShieldCheck,
@@ -40,8 +40,8 @@ export const ConsolePage: React.FC = () => {
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink flex flex-col justify-between">
       <SEO
-        title="Yaqeel Console — Multi-Branch Desktop Administrative Headquarters"
-        description="Dedicated desktop command centre for academy directors, accountants, and multi-campus management."
+        title="Yaqeel Console: Web Dashboard Coming Soon"
+        description="A desktop dashboard for institute directors and accountants is coming soon. Request early access."
         canonical="https://www.yaqeel.com/console"
       />
       <Navbar onOpenDemo={openDemo} />

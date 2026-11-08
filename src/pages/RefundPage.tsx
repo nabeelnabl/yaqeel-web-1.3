@@ -8,7 +8,7 @@ export const RefundPage: React.FC = () => {
     <div className="min-h-screen bg-paper text-ink">
       <SEO
         title="Refund Policy | Yaqeel"
-        description="Yaqeel's transparent subscription cancellation and refund terms for tuition centres and academies."
+        description="Cancellation and refund terms for Yaqeel subscriptions."
         canonical="https://www.yaqeel.com/refund"
       />
       <Navbar />

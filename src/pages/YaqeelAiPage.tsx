@@ -57,16 +57,16 @@ interface ChatScenario {
 const CHAT_SCENARIOS: ChatScenario[] = [
   {
     id: 'student-summary',
-    chipLabel: '“Mohammed Shan turnout & fees”',
+    chipLabel: '“Mohammed Shan attendance & fees”',
     userQuery: 'Show Mohammed Shan\'s attendance and pending fees this month',
     isVoice: true,
     voiceDuration: '0:04',
     timestamp: '09:14 AM',
-    lead: 'Here is the authorized record for Mohammed Shan (Roll #24 • Class 10-A):',
+    lead: 'Here is the authorised record for Mohammed Shan (Roll #24 • Class 10-A):',
     student: {
       name: 'Mohammed Shan',
       meta: 'Class 10-A • Roll #24 • Guardian: Abdul Rahman',
-      attendance: '92% Turnout',
+      attendance: '92% Attendance',
       attendanceDetail: 'Present 22 / 24 sessions • Last absent: Oct 28',
       feeStatus: '₹0 Pending',
       feeDetail: 'Term 2 fully settled (Receipt #1042)',
@@ -117,12 +117,12 @@ const AI_CAPABILITIES = [
   {
     icon: Search,
     title: 'Instant Student Lookup',
-    desc: 'Retrieve attendance turnout, test mark trends, fee ledger balances, and parent contact details across your institute in seconds.',
+    desc: 'Retrieve attendance records, test mark trends, fee ledger balances, and parent contact details across your institute in seconds.',
   },
   {
     icon: ShieldCheck,
     title: 'Strict Role-Based Privacy',
-    desc: 'Staff members only access data for batches and students they are officially authorized to view. Institute records remain fully protected.',
+    desc: 'Staff members only access data for batches and students they are officially authorised to view. Institute records remain fully protected.',
   },
 ];
 
@@ -154,8 +154,8 @@ export const YaqeelAiPage: React.FC = () => {
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink flex flex-col justify-between">
       <SEO
-        title="Yaqeel AI — Conversational Student & Institute Search by Voice"
-        description="Natural language chatbot for institute intelligence. Search student attendance, marks, and fees with voice or text."
+        title="Yaqeel AI: Voice and Text Search for Institutes"
+        description="An upcoming AI assistant for finding attendance, marks and fee records by voice or text."
         canonical="https://www.yaqeel.com/yaqeel-ai"
       />
       <Navbar onOpenDemo={openDemo} />
@@ -169,7 +169,7 @@ export const YaqeelAiPage: React.FC = () => {
           </h1>
 
           <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-mute sm:text-lg">
-            Search any student record, attendance turnout, or fee balance using a natural AI conversational chatbot &mdash; with voice or text, secured strictly to your institute.
+            Search any student record, attendance rate, or fee balance using a natural AI conversational chatbot &mdash; with voice or text, secured strictly to your institute.
           </p>
 
           {/* Handcrafted AI Chatbot Frame */}
@@ -191,7 +191,7 @@ export const YaqeelAiPage: React.FC = () => {
 
               <div className="flex items-center gap-2">
                 <span className="text-[11px] font-mono text-mute hidden sm:inline">
-                  Authorized Sandbox
+                  Private to your institute
                 </span>
                 <span className="text-[11px] font-mono uppercase tracking-wider text-ink border border-line bg-white px-2 py-0.5 rounded-md">
                   Coming Soon

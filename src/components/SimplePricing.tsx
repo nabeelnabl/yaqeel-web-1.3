@@ -70,7 +70,10 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
               ₹60
             </div>
             <p className="mt-2 text-sm text-mute">
-              per student count, per year &bull; billed annually
+              per student, per year &bull; billed annually
+            </p>
+            <p className="mt-1 text-xs text-mute font-medium">
+              Fixed ₹60 per student. That&apos;s just ₹5 per student per month.
             </p>
           </div>
 
@@ -115,7 +118,7 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
                 className="w-full h-2 bg-paper rounded-lg appearance-none cursor-pointer accent-ink"
                 aria-label="Student count range slider"
               />
-              <div className="mt-2 flex justify-between text-[11px] text-mute font-mono">
+              <div className="mt-2.5 flex justify-between text-xs sm:text-[13px] text-mute font-mono">
                 <span>50</span>
                 <span>2,500</span>
                 <span>5,000</span>
@@ -124,7 +127,7 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
             </div>
 
             {/* Quick Preset Chips */}
-            <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5">
               {PRESETS.map((count) => {
                 const label = count === 7500 ? '5,000+' : count.toLocaleString('en-IN');
                 const isSelected = count === 7500 ? studentCount > 5000 : studentCount === count;
@@ -133,7 +136,7 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
                     key={count}
                     type="button"
                     onClick={() => setStudentCount(count)}
-                    className={`rounded-full px-3.5 py-1 text-xs font-medium transition ${
+                    className={`rounded-full px-4 py-2 min-h-[44px] inline-flex items-center justify-center text-xs sm:text-sm font-medium transition cursor-pointer ${
                       isSelected
                         ? 'bg-ink text-paper'
                         : 'border border-line bg-paper text-ink hover:border-ink'

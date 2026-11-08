@@ -8,7 +8,7 @@ export const PrivacyPolicyPage: React.FC = () => {
     <div className="min-h-screen bg-paper text-ink">
       <SEO
         title="Privacy Policy | Yaqeel"
-        description="Yaqeel's privacy policy and data governance practices for educational institutes, parents, and students."
+        description="How Yaqeel collects, uses and protects data."
         canonical="https://www.yaqeel.com/privacy"
       />
       <Navbar />
@@ -41,7 +41,7 @@ export const PrivacyPolicyPage: React.FC = () => {
               1. Information We Collect
             </h2>
             <p>
-              We collect information you provide directly when you create an account, register your institution layout, or contact our support team. This includes your administrative name, email address, phone number, and institution details.
+              We collect information you provide directly when you create an account, register your institution, or contact our support team. This includes your administrative name, email address, phone number, and institution details.
             </p>
             <p className="mt-3">
               We also automatically collect certain technical data when you interact with the Yaqeel platform &mdash; such as your IP address, device type, operating system version, and system usage patterns &mdash; to help us maintain and improve platform security.
@@ -71,7 +71,7 @@ export const PrivacyPolicyPage: React.FC = () => {
               3. Data Retention &amp; Security
             </h2>
             <p>
-              We implement industry-standard administrative, physical, and technical security safeguards to prevent unauthorized access, alteration, or disclosure of your educational data. All communications between the mobile application and our servers are encrypted via SSL/TLS.
+              We implement industry-standard administrative, physical, and technical security safeguards to prevent unauthorised access, alteration, or disclosure of your educational data. All communications between the mobile application and our servers are encrypted via SSL/TLS.
             </p>
             <p className="mt-3">
               We retain institutional data only for as long as your account remains active or as required to fulfill our legal obligations and resolve disputes.

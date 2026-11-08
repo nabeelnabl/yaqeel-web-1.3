@@ -21,8 +21,8 @@ export const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink">
       <SEO
-        title="Yaqeel — Modern Tuition & Institute Management App"
-        description="Run your tuition centre smoothly. Manage student attendance, fees, exams, and teacher payroll from your mobile phone."
+        title="Tuition & Coaching Institute Management App in India | Yaqeel"
+        description="Attendance, fees, exams, payroll and WhatsApp parent alerts in one mobile app for Indian tuition centres. ₹60 per student per year."
         canonical="https://www.yaqeel.com/"
       />
       <Navbar onOpenDemo={openDemo} />

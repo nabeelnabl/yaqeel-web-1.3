@@ -29,7 +29,7 @@ const HIGHLIGHTS = [
   {
     n: '03',
     title: 'Individual Progress Tracking',
-    desc: 'Record customized test scores, assignments, and personalized teacher remarks for every learner.',
+    desc: 'Record customised test scores, assignments, and personalised teacher remarks for every learner.',
   },
   {
     n: '04',
@@ -84,8 +84,8 @@ export const OneToOnePage: React.FC = () => {
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink">
       <SEO
-        title="1-to-1 & Home Tutoring Management Platform | Yaqeel"
-        description="Streamlined management built for independent educators and 1-to-1 private tutors. Hourly logs, turnout, and billing."
+        title="Private Tuition App for Home Tutors in India | Yaqeel"
+        description="Track sessions, lesson topics, progress and fees for each private student, and share receipts with parents on WhatsApp."
         canonical="https://www.yaqeel.com/1-to-1"
       />
       <Navbar onOpenDemo={openDemo} />

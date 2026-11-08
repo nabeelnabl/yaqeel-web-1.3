@@ -4,7 +4,7 @@ import { PhoneMockup, type FeatureKey } from './PhoneMockup';
 
 const FEATURES: { id: FeatureKey; n: string; title: string; tag: string; points: string[] }[] = [
   { id: 'attendance', n: '01', title: 'Attendance', tag: 'Mark attendance in seconds.',
-    points: ['One-tap roll call for the whole class', 'Absentee alerts to parents on WhatsApp & SMS', 'Forenoon and afternoon sessions', 'Monthly turnout analytics and reports'] },
+    points: ['One-tap roll call for the whole class', 'Absentee alerts to parents on WhatsApp & SMS', 'Forenoon and afternoon sessions', 'Monthly attendance analytics and reports'] },
   { id: 'exams', n: '02', title: 'Exams', tag: 'Gradebooks, analysis and report cards.',
     points: ['Enter marks on mobile as papers are corrected', 'Class averages, top scores and batch ranks', 'Flags students who need attention', 'Full history across unit tests, terms and finals'] },
   { id: 'fees', n: '03', title: 'Fees', tag: 'Clear ledgers and instant receipts.',

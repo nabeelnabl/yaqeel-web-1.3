@@ -28,7 +28,7 @@ const CORE_SOLUTIONS = [
     description: 'Replace fragmented registers, Excel sheets, and paper receipts with a single unified mobile management system.',
     points: [
       'Multi-batch & student profile management',
-      'One-tap attendance with 10-second class turnouts',
+      'One-tap attendance marked in under 10 seconds',
       'Fee records, instant receipts & payment histories',
       'Exam creation, marks entry & printable report cards',
     ],
@@ -40,7 +40,7 @@ const CORE_SOLUTIONS = [
     n: '02',
     category: 'Keep everyone connected',
     title: 'Built for students, teachers & parents',
-    description: 'Ensure parents are always informed and teachers can record daily marks and turnout directly from their smartphones.',
+    description: 'Ensure parents are always informed and teachers can record daily marks and attendance directly from their smartphones.',
     points: [
       'Role-based access for teachers and administrators',
       'Automated WhatsApp notifications for absent students',
@@ -122,8 +122,8 @@ export const BusinessPage: React.FC = () => {
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink">
       <SEO
-        title="Enterprise Institute & Coaching Centre Management | Yaqeel"
-        description="Scale your academy or coaching centre with batch scheduling, automated fee tracking, and multi-branch operations."
+        title="Institute Management Software for Tuition Centres | Yaqeel"
+        description="Replace registers and Excel with one mobile app for attendance, fee records, exams, payroll and parent updates."
         canonical="https://www.yaqeel.com/business"
       />
       <Navbar onOpenDemo={openDemo} />
@@ -134,12 +134,12 @@ export const BusinessPage: React.FC = () => {
            ====================================================== */}
         <section className="px-6 pt-36 sm:pt-44">
           <div className="mx-auto max-w-4xl text-center">
-            <p className="eyebrow">Enterprise &amp; Academies</p>
+            <p className="eyebrow">Institutes &amp; Coaching Centres</p>
             <h1 className="h-display mt-6 text-[2.75rem] sm:text-6xl md:text-7xl">
               The complete platform<br className="hidden sm:inline" /> for modern institutes.
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-mute sm:text-lg">
-              From 50-student coaching batches to multi-campus academies with 8,000+ enrolments in just 6 months &mdash; Yaqeel simplifies attendance, fees, exams, and parent communications from one calm mobile app.
+              From small coaching batches to growing academies &mdash; Yaqeel simplifies attendance, fees, exams, and parent communications from one calm mobile app.
             </p>
 
             {/* Hero Actions */}
@@ -335,7 +335,10 @@ export const BusinessPage: React.FC = () => {
               <div className="pb-8 border-b border-line">
                 <span className="eyebrow">Standard Rate</span>
                 <div className="h-display mt-3 text-6xl sm:text-7xl text-ink">₹60</div>
-                <p className="mt-2 text-sm text-mute">per student count, per year &bull; billed annually</p>
+                <p className="mt-2 text-sm text-mute">per student, per year &bull; billed annually</p>
+                <p className="mt-1 text-xs text-mute font-medium">
+                  Fixed ₹60 per student. That&apos;s just ₹5 per student per month.
+                </p>
               </div>
 
               {/* Calculator Section */}
@@ -379,7 +382,7 @@ export const BusinessPage: React.FC = () => {
                     className="w-full h-2 bg-paper rounded-lg appearance-none cursor-pointer accent-ink"
                     aria-label="Student count range slider"
                   />
-                  <div className="mt-2 flex justify-between text-[11px] text-mute font-mono">
+                  <div className="mt-2.5 flex justify-between text-xs sm:text-[13px] text-mute font-mono">
                     <span>50</span>
                     <span>2,500</span>
                     <span>5,000</span>
@@ -388,7 +391,7 @@ export const BusinessPage: React.FC = () => {
                 </div>
 
                 {/* Quick Presets */}
-                <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5">
                   {[50, 100, 250, 500, 1000, 2500, 5000, 7500].map((count) => {
                     const label = count === 7500 ? '5,000+' : count.toLocaleString('en-IN');
                     const isSelected = count === 7500 ? calcCount > 5000 : calcCount === count;
@@ -397,7 +400,7 @@ export const BusinessPage: React.FC = () => {
                         key={count}
                         type="button"
                         onClick={() => setCalcCount(count)}
-                        className={`rounded-full px-3.5 py-1 text-xs font-medium transition ${
+                        className={`rounded-full px-4 py-2 min-h-[44px] inline-flex items-center justify-center text-xs sm:text-sm font-medium transition cursor-pointer ${
                           isSelected
                             ? 'bg-ink text-paper'
                             : 'border border-line bg-paper text-ink hover:border-ink'

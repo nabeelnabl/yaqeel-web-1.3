@@ -41,11 +41,11 @@ export const GooglePlayBadge: React.FC<{ className?: string; size?: 'sm' | 'md' 
         loading="lazy"
       />
       <div className="text-left leading-tight">
-        <span className="block text-[8.5px] sm:text-[9.5px] uppercase tracking-wider text-neutral-400 font-medium leading-none">
+        <span className="block text-[10px] sm:text-[11px] uppercase tracking-wider text-neutral-400 font-medium leading-none">
           GET IT ON
         </span>
         <span className={`block font-semibold tracking-tight text-white whitespace-nowrap leading-tight mt-0.5 sm:mt-1 font-display ${
-          isSm ? 'text-[12px]' : isLg ? 'text-[17px]' : 'text-[13px] sm:text-[14.5px]'
+          isSm ? 'text-[12px]' : isLg ? 'text-[17px]' : 'text-[13px] sm:text-[15px]'
         }`}>
           Google Play
         </span>
@@ -89,11 +89,11 @@ export const AppStoreBadge: React.FC<{ className?: string; size?: 'sm' | 'md' | 
         loading="lazy"
       />
       <div className="text-left leading-tight">
-        <span className="block text-[8.5px] sm:text-[9.5px] tracking-wide text-neutral-400 font-medium leading-none">
+        <span className="block text-[10px] sm:text-[11px] tracking-wide text-neutral-400 font-medium leading-none">
           Download on the
         </span>
         <span className={`block font-semibold tracking-tight text-white whitespace-nowrap leading-tight mt-0.5 sm:mt-1 font-display ${
-          isSm ? 'text-[12px]' : isLg ? 'text-[17px]' : 'text-[13px] sm:text-[14.5px]'
+          isSm ? 'text-[12px]' : isLg ? 'text-[17px]' : 'text-[13px] sm:text-[15px]'
         }`}>
           App Store
         </span>

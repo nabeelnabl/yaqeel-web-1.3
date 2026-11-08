@@ -14,8 +14,8 @@ import {
 const PARENT_FEATURES = [
   {
     icon: CheckCircle2,
-    title: 'Live Attendance Check-ins',
-    desc: 'Get notified the moment your child enters or leaves their tuition batch, with monthly turnout percentages.',
+    title: 'Attendance Updates',
+    desc: 'Get notified as soon as attendance is marked, with monthly attendance percentages.',
   },
   {
     icon: Award,
@@ -43,8 +43,8 @@ export const ParentAppPage: React.FC = () => {
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink">
       <SEO
-        title="Yaqeel Parent App — Student Attendance & Academic Reports"
-        description="Keep parents engaged with real-time WhatsApp absence alerts, exam mark sheets, and instant digital fee receipts."
+        title="Parent App for Attendance, Marks and Fees | Yaqeel"
+        description="Parents can see attendance, exam marks, fee receipts and timetables from their child's institute."
         canonical="https://www.yaqeel.com/parent-app"
       />
       <Navbar onOpenDemo={openDemo} />

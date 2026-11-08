@@ -5,6 +5,7 @@ interface SEOProps {
   description: string;
   canonical?: string;
   ogImage?: string;
+  noindex?: boolean;
 }
 
 export const SEO: React.FC<SEOProps> = ({
@@ -12,6 +13,7 @@ export const SEO: React.FC<SEOProps> = ({
   description,
   canonical,
   ogImage = 'https://www.yaqeel.com/assets/yaqeel-banner.png',
+  noindex = false,
 }) => {
   useEffect(() => {
     // 1. Document Title
@@ -27,6 +29,19 @@ export const SEO: React.FC<SEOProps> = ({
       }
       el.setAttribute('content', content);
     };
+
+    // Robots noindex
+    let robots = document.querySelector('meta[name="robots"]');
+    if (noindex) {
+      if (!robots) {
+        robots = document.createElement('meta');
+        robots.setAttribute('name', 'robots');
+        document.head.appendChild(robots);
+      }
+      robots.setAttribute('content', 'noindex, follow');
+    } else if (robots) {
+      robots.setAttribute('content', 'index, follow');
+    }
 
     // 2. Standard Meta
     setMeta('name', 'description', description);

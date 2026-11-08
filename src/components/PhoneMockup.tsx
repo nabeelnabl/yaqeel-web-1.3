@@ -129,8 +129,11 @@ const VideoDemo: React.FC<{
   if (hasError) {
     return (
       <img
-        src={demo.gif}
+        src={demo.webp}
         alt={demo.alt}
+        loading="lazy"
+        width={360}
+        height={720}
         className="w-full h-full object-fill select-none pointer-events-none"
       />
     );
@@ -143,7 +146,7 @@ const VideoDemo: React.FC<{
       loop
       muted
       playsInline
-      preload="auto"
+      preload="metadata"
       poster={demo.webp}
       onError={() => setHasError(true)}
       onEnded={restartAndPlay}
@@ -167,8 +170,11 @@ const VideoDemo: React.FC<{
     >
       <source src={demo.webm} type="video/webm" />
       <img
-        src={demo.gif}
+        src={demo.webp}
         alt={demo.alt}
+        loading="lazy"
+        width={360}
+        height={720}
         className="w-full h-full object-fill select-none pointer-events-none"
       />
     </video>

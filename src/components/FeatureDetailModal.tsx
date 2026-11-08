@@ -17,7 +17,7 @@ const FEATURE_DETAILS: Record<string, FeatureDetail> = {
     badgeColor: 'bg-[#542BE0]/10 text-[#542BE0] border-[#542BE0]/20',
     title: 'Attendance Management',
     tagline: 'Mark Attendance in Seconds',
-    description: 'Mark attendance with a single tap from your phone. Absentee alerts are dispatched directly to parents via WhatsApp, with real-time monthly turnout analytics.',
+    description: 'Mark attendance with a single tap from your phone. Absentee alerts are dispatched directly to parents via WhatsApp, with real-time monthly attendance analytics.',
     highlights: [
       {
         title: 'Forenoon & Afternoon Shifts',

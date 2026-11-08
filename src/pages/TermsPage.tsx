@@ -7,8 +7,8 @@ export const TermsPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <SEO
-        title="Terms of Service | Yaqeel"
-        description="Terms and conditions for utilizing the Yaqeel institute management software and mobile apps."
+        title="Terms of Use | Yaqeel"
+        description="The terms that apply to using Yaqeel's apps and services."
         canonical="https://www.yaqeel.com/terms"
       />
       <Navbar />

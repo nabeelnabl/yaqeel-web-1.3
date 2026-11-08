@@ -19,7 +19,7 @@ export const DeleteAccountPage: React.FC = () => {
 
     const subject = encodeURIComponent(`Account Deletion Request - ${instName}`);
     const body = encodeURIComponent(
-      `Institution: ${instName}\nRegistered Phone: ${phone}\n\nI confirm that I am the authorized administrator and request permanent deletion of this Yaqeel account and all associated student and attendance records.`
+      `Institution: ${instName}\nRegistered Phone: ${phone}\n\nI confirm that I am the authorised administrator and request permanent deletion of this Yaqeel account and all associated student and attendance records.`
     );
     window.location.href = `mailto:support@yaqeel.com?subject=${subject}&body=${body}`;
     setSubmitted(true);
@@ -28,9 +28,10 @@ export const DeleteAccountPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <SEO
-        title="Account Deletion Request | Yaqeel"
-        description="Submit an official request to permanently delete your Yaqeel administrator account and institute data."
+        title="Delete Your Account | Yaqeel"
+        description="How to request deletion of a Yaqeel account and its data."
         canonical="https://www.yaqeel.com/delete-account"
+        noindex={true}
       />
       <Navbar />
 

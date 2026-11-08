@@ -51,7 +51,7 @@ const CONTACT_CHANNELS = [
     actionLabel: 'View location',
     href: 'https://maps.google.com/?q=Calicut,+Kerala,+India',
     icon: MapPin,
-    badge: 'We are from',
+    badge: 'Based in Calicut, Kerala',
   },
 ];
 
@@ -85,7 +85,7 @@ const TOPICS = [
   },
   {
     title: 'Teacher Access & Attendance',
-    desc: 'Setting up faculty phone logins, managing subject permissions, and resolving turnout sync issues.',
+    desc: 'Setting up faculty phone logins, managing subject permissions, and resolving attendance sync issues.',
   },
   {
     title: 'Fees & WhatsApp Receipts',
@@ -93,7 +93,7 @@ const TOPICS = [
   },
   {
     title: 'Exam Marks & Gradebooks',
-    desc: 'Entering test scores, generating batch rank lists, and exporting customized student report cards.',
+    desc: 'Entering test scores, generating batch rank lists, and exporting customised student report cards.',
   },
 ];
 
@@ -106,8 +106,8 @@ export const SupportPage: React.FC = () => {
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink">
       <SEO
-        title="Official Customer Support & Contact | Yaqeel"
-        description="Get in touch with Yaqeel support desk via phone, WhatsApp, or email. We are from Calicut, Kerala, India."
+        title="Support and Contact | Yaqeel"
+        description="Contact Yaqeel by phone, WhatsApp or email for onboarding, teacher access, fees and exam support."
         canonical="https://www.yaqeel.com/support"
       />
       <Navbar onOpenDemo={openDemo} />
@@ -182,7 +182,7 @@ export const SupportPage: React.FC = () => {
                 All customer support numbers
               </h2>
               <p className="mt-2 text-sm text-mute">
-                Call any of our official support lines for instant assistance:
+                Call any of our official support lines during support hours (Mon–Sat, 9 AM–7 PM IST):
               </p>
             </div>
 

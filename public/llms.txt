@@ -1,0 +1,22 @@
+# Yaqeel — Modern Tuition & Institute Management App
+
+> Yaqeel is a mobile-first institute management application built for Indian tuition centres, coaching academies, and private home tutors. It simplifies student attendance, automated WhatsApp parent alerts, fee collection, exam mark sheets, and teacher payroll from iOS and Android smartphones.
+
+## Pricing
+- **Normal Tuition & Coaching Centres:** ₹60 per student, per year (approx. ₹5 per student per month).
+- **1-to-1 Private Tutors:** ₹150 per student, per year (min. 20 students).
+
+## Key Public Pages
+- Homepage: https://www.yaqeel.com/
+- Institute & Coaching Centre Management: https://www.yaqeel.com/business
+- 1-to-1 & Private Tutoring: https://www.yaqeel.com/1-to-1
+- Parent Application: https://www.yaqeel.com/parent-app
+- Web Console (Coming Soon): https://www.yaqeel.com/console
+- Yaqeel AI Assistant (Coming Soon): https://www.yaqeel.com/yaqeel-ai
+- Customer Support: https://www.yaqeel.com/support
+
+## Contact
+- Support Phone: +91 85900 28549
+- WhatsApp: +91 85900 28549
+- Email: support@yaqeel.com
+- Location: Calicut, Kerala, India
