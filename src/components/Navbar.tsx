@@ -47,7 +47,7 @@ export const PRICING_OPTIONS = [
   },
   {
     title: '1 to 1 Rate',
-    rate: '₹150 / student',
+    rate: '₹100 / student',
     desc: 'For individual private tutors (min. 20 students)',
     href: '/1-to-1#pricing',
   },

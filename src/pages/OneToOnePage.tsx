@@ -11,7 +11,7 @@ import {
 } from 'lucide-react';
 
 const WA_BASE = 'https://wa.me/918590028549';
-const RATE_PER_STUDENT = 150;
+const RATE_PER_STUDENT = 100;
 const MIN_STUDENTS = 20;
 const DISCOUNT_THRESHOLD = 100;
 
@@ -76,7 +76,7 @@ export const OneToOnePage: React.FC = () => {
       return `${WA_BASE}?text=${text}`;
     }
     const text = encodeURIComponent(
-      `Hi Yaqeel, I teach ${effectiveCount.toLocaleString('en-IN')} students in 1-to-1 private tuitions. I want to get started with the ₹150/student plan (Total: ₹${totalAmount.toLocaleString('en-IN')}).`
+      `Hi Yaqeel, I teach ${effectiveCount.toLocaleString('en-IN')} students in 1-to-1 private tuitions. I want to get started with the ₹100/student plan (Total: ₹${totalAmount.toLocaleString('en-IN')}).`
     );
     return `${WA_BASE}?text=${text}`;
   };
@@ -197,17 +197,17 @@ export const OneToOnePage: React.FC = () => {
           <div className="mx-auto max-w-3xl text-center">
             <p className="eyebrow">1-to-1 Pricing</p>
             <h2 className="h-display mt-5 text-4xl sm:text-5xl text-ink">
-              ₹150 per student.
+              ₹100 per student.
             </h2>
             <p className="mt-4 text-base text-mute">
-              Billed annually &bull; Minimum 20 students (₹3,000 / year) &bull; Includes all 1-to-1 features &amp; parent app
+              Billed annually &bull; Minimum 20 students (₹2,000 / year) &bull; Includes all 1-to-1 features &amp; parent app
             </p>
 
             {/* Small Calculator Card */}
             <div className="mt-12 rounded-3xl border border-line bg-white p-6 sm:p-12 text-center shadow-xs">
               <div className="pb-8 border-b border-line">
                 <span className="eyebrow">1-to-1 Plan</span>
-                <div className="h-display mt-3 text-6xl sm:text-7xl text-ink">₹150</div>
+                <div className="h-display mt-3 text-6xl sm:text-7xl text-ink">₹100</div>
                 <p className="mt-2 text-sm text-mute">
                   per student count, per year &bull; Min. 20 students
                 </p>
@@ -324,7 +324,7 @@ export const OneToOnePage: React.FC = () => {
                         <span className="text-lg sm:text-xl font-normal text-mute"> / year</span>
                       </div>
                       <p className="mt-1 text-xs sm:text-sm text-mute">
-                        ₹150 &times; {effectiveCount} students &bull; {studentCount < MIN_STUDENTS ? 'Minimum 20 students base plan' : 'No extra charges'}
+                        ₹100 &times; {effectiveCount} students &bull; {studentCount < MIN_STUDENTS ? 'Minimum 20 students base plan' : 'No extra charges'}
                       </p>
 
                       <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -370,7 +370,7 @@ export const OneToOnePage: React.FC = () => {
               </div>
 
               <p className="mt-8 text-xs text-mute">
-                Minimum 20 students plan (₹3,000/yr) &bull; Cancel or upgrade anytime &bull; GST invoice provided
+                Minimum 20 students plan (₹2,000/yr) &bull; Cancel or upgrade anytime &bull; GST invoice provided
               </p>
             </div>
           </div>
