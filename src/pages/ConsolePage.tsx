@@ -13,7 +13,7 @@ import {
   ShieldCheck 
 } from 'lucide-react';
 
-const COMING_FEATURES = [
+const CONSOLE_FEATURES = [
   {
     icon: Building2,
     title: 'Multi-Branch Command Center',
@@ -40,22 +40,22 @@ export const ConsolePage: React.FC = () => {
   return (
     <div className="min-h-screen overflow-x-clip bg-paper text-ink flex flex-col justify-between">
       <SEO
-        title="Yaqeel Console: Web Dashboard Coming Soon"
-        description="A desktop dashboard for institute directors and accountants is coming soon. Request early access."
+        title="Yaqeel Console: Desktop Command Center for Institutes"
+        description="Desktop multi-branch administrative headquarters and command center for institute directors and accountants."
         canonical="https://www.yaqeel.com/console"
       />
       <Navbar onOpenDemo={openDemo} />
 
       <main className="flex-1 px-6 pt-36 pb-24 sm:pt-44 sm:pb-32">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="eyebrow">Web Platform &bull; Coming Soon</p>
+          <p className="eyebrow">Web Platform &bull; Administrative Headquarters</p>
 
           <h1 className="h-display mt-6 text-4xl sm:text-6xl md:text-7xl text-ink">
-            Yaqeel Console is<br className="hidden sm:inline" /> coming soon.
+            Yaqeel Administrative<br className="hidden sm:inline" /> Web Console.
           </h1>
 
           <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
-            We are designing a dedicated desktop dashboard tailored for academy directors, accountants, and multi-campus management.
+            A dedicated desktop dashboard tailored for academy directors, accountants, and multi-campus management.
           </p>
 
           {/* Quick Notice Card */}
@@ -83,22 +83,22 @@ export const ConsolePage: React.FC = () => {
                 <span>Return to Homepage</span>
               </Link>
               <a
-                href="https://wa.me/918590028549?text=Hi%20Yaqeel%2C%20I%20am%20interested%20in%20early%20access%20to%20the%20Yaqeel%20Web%20Console."
+                href="https://wa.me/918590028549?text=Hi%20Yaqeel%2C%20I%20am%20interested%20in%20access%20to%20the%20Yaqeel%20Web%20Console."
                 target="_blank"
                 rel="noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-ink px-6 py-2.5 text-xs font-medium text-paper transition hover:bg-black"
               >
                 <MessageSquare size={14} className="text-paper/80" />
-                <span>Request Early Console Access</span>
+                <span>Request Console Access</span>
               </a>
             </div>
           </div>
 
-          {/* Upcoming Features Preview */}
+          {/* Features Preview */}
           <div className="mt-20 text-left">
-            <p className="eyebrow text-center mb-8">What is coming in the web console</p>
+            <p className="eyebrow text-center mb-8">Web Console Capabilities</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {COMING_FEATURES.map((f) => {
+              {CONSOLE_FEATURES.map((f) => {
                 const Icon = f.icon;
                 return (
                   <div key={f.title} className="rounded-3xl border border-line bg-white p-6 sm:p-8">
