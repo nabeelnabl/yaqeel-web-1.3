@@ -11,7 +11,7 @@
 - Institute & Coaching Centre Management: https://www.yaqeel.com/business
 - 1-to-1 & Private Tutoring: https://www.yaqeel.com/1-to-1
 - Parent Application: https://www.yaqeel.com/parent-app
-- Web Console (Coming Soon): https://www.yaqeel.com/console
+- Web Console: https://www.yaqeel.com/console
 - Yaqeel AI Assistant (Coming Soon): https://www.yaqeel.com/yaqeel-ai
 - Customer Support: https://www.yaqeel.com/support
 

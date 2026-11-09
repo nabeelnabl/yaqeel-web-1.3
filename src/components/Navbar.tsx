@@ -28,7 +28,7 @@ export const PRODUCTS = [
     title: 'Console',
     desc: 'Desktop multi-branch administrative headquarters',
     href: '/console',
-    badge: 'Coming Soon',
+    badge: null,
   },
   {
     title: 'Yaqeel AI',
