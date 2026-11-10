@@ -2,4 +2,7 @@ User-agent: *
 Disallow: /delete-account
 Allow: /
 
+User-agent: Googlebot-Image
+Allow: /
+
 Sitemap: https://www.yaqeel.com/sitemap.xml
