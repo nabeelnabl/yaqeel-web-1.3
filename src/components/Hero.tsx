@@ -13,10 +13,10 @@ export const Hero: React.FC = () => (
     <div className="mx-auto max-w-4xl text-center">
       <p className="eyebrow">Institute management</p>
       <h1 className="h-display mt-6 text-[2.75rem] sm:text-6xl md:text-7xl text-[#181135]">
-        Run your institute<br />from your phone.
+        The Complete Institute<br className="hidden sm:inline" /> Management App.
       </h1>
       <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
-        Attendance, exams, fees and payroll in one calm, mobile-first app.
+        Manage students, attendance, fees, exams and teachers &mdash; all in one place.
       </p>
       <div className="mt-10 flex justify-center"><AppBadgesGroup size="md" className="gap-3" /></div>
       <p className="mt-6 text-[13px] text-mute">Trusted by 8,000+ students &amp; teachers in just 6 months across India</p>
