@@ -22,7 +22,7 @@ export const HomePage: React.FC = () => {
     <div className="min-h-screen overflow-x-clip bg-paper text-ink">
       <SEO
         title="Yaqeel — The Complete Institute Management App"
-        description="Attendance, fees, exams, payroll and WhatsApp parent alerts in one mobile app for Indian tuition centres and coaching institutes. ₹60 per student per year."
+        description="Attendance, fees, exams, payroll and WhatsApp parent alerts in one mobile app for Indian tuition centres and coaching institutes. ₹59 per student per year."
         canonical="https://www.yaqeel.com/"
       />
       <Navbar onOpenDemo={openDemo} />

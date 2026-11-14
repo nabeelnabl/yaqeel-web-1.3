@@ -92,7 +92,7 @@ const COMPARISON = [
   {
     feature: 'Pricing & contracts',
     traditional: 'Steep setup fees, annual server maintenance & hidden costs',
-    yaqeel: 'Fixed transparent pricing: ₹60 per student count / year',
+    yaqeel: 'Fixed transparent pricing: ₹59 per student count / year',
   },
 ];
 
@@ -110,13 +110,13 @@ export const BusinessPage: React.FC = () => {
   };
 
   const isCalcDiscounted = calcCount > 5000;
-  const calcTotal = calcCount * 60;
+  const calcTotal = calcCount * 59;
 
   const getCalcWaLink = () => {
     if (isCalcDiscounted) {
       return `${WA_BASE}?text=${encodeURIComponent(`Hi Yaqeel, our institute has ${calcCount.toLocaleString('en-IN')} students. We would like to get a discounted enterprise volume price quote.`)}`;
     }
-    return `${WA_BASE}?text=${encodeURIComponent(`Hi Yaqeel, our institute has ${calcCount.toLocaleString('en-IN')} students. We would like to start with the ₹60/student plan.`)}`;
+    return `${WA_BASE}?text=${encodeURIComponent(`Hi Yaqeel, our institute has ${calcCount.toLocaleString('en-IN')} students. We would like to start with the ₹59/student plan.`)}`;
   };
 
   return (
@@ -326,7 +326,7 @@ export const BusinessPage: React.FC = () => {
         <section className="px-6 py-24 sm:py-32 border-t border-line">
           <div className="mx-auto max-w-3xl text-center">
             <p className="eyebrow">Enterprise Pricing</p>
-            <h2 className="h-display mt-5 text-4xl sm:text-5xl text-ink">Fixed ₹60 per student.</h2>
+            <h2 className="h-display mt-5 text-4xl sm:text-5xl text-ink">Fixed ₹59 per student.</h2>
             <p className="mt-4 text-base text-mute">
               One fixed annual rate covers all four modules, unlimited teacher accounts, automated WhatsApp parent alerts, and the student mobile app.
             </p>
@@ -334,10 +334,10 @@ export const BusinessPage: React.FC = () => {
             <div className="mt-12 rounded-3xl border border-line bg-white p-6 sm:p-12 text-center shadow-xs">
               <div className="pb-8 border-b border-line">
                 <span className="eyebrow">Standard Rate</span>
-                <div className="h-display mt-3 text-6xl sm:text-7xl text-ink">₹60</div>
+                <div className="h-display mt-3 text-6xl sm:text-7xl text-ink">₹59</div>
                 <p className="mt-2 text-sm text-mute">per student, per year &bull; billed annually</p>
                 <p className="mt-1 text-xs text-mute font-medium">
-                  Fixed ₹60 per student. That&apos;s just ₹5 per student per month.
+                  Fixed ₹59 per student. That&apos;s just under ₹5 per student per month.
                 </p>
               </div>
 
@@ -455,7 +455,7 @@ export const BusinessPage: React.FC = () => {
                         <span className="text-lg sm:text-xl font-normal text-mute"> / year</span>
                       </div>
                       <p className="mt-1 text-xs sm:text-sm text-mute">
-                        ₹60 &times; {calcCount.toLocaleString('en-IN')} active students &bull; no extra charges
+                        ₹59 &times; {calcCount.toLocaleString('en-IN')} active students &bull; no extra charges
                       </p>
 
                       <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">

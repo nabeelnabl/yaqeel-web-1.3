@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Check, MessageSquare, ArrowRight, Calculator } from 'lucide-react';
 
 const WA_BASE = 'https://wa.me/918590028549';
-const FIXED_PRICE_PER_STUDENT = 60;
+const FIXED_PRICE_PER_STUDENT = 59;
 const DISCOUNT_THRESHOLD = 5000;
 
 const ITEMS = [
@@ -44,7 +44,7 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
       return `${WA_BASE}?text=${text}`;
     }
     const text = encodeURIComponent(
-      `Hi Yaqeel, our institute has ${studentCount.toLocaleString('en-IN')} students. I would like to get started with the ₹60 per student plan.`
+      `Hi Yaqeel, our institute has ${studentCount.toLocaleString('en-IN')} students. I would like to get started with the ₹59 per student plan.`
     );
     return `${WA_BASE}?text=${text}`;
   };
@@ -54,7 +54,7 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
       <div className="mx-auto max-w-3xl text-center">
         <p className="eyebrow">Transparent Pricing</p>
         <h2 className="h-display mt-5 text-4xl sm:text-5xl text-ink">
-          Fixed ₹60 per student.
+          Fixed ₹59 per student.
         </h2>
         <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-mute sm:text-lg">
           One fixed annual rate covers all four modules, unlimited teacher accounts, automated WhatsApp parent alerts, and the student mobile app.
@@ -67,13 +67,13 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
           <div className="pb-8 border-b border-line">
             <span className="eyebrow">Standard Rate</span>
             <div className="h-display mt-3 text-6xl sm:text-7xl text-ink">
-              ₹60
+              ₹59
             </div>
             <p className="mt-2 text-sm text-mute">
               per student, per year &bull; billed annually
             </p>
             <p className="mt-1 text-xs text-mute font-medium">
-              Fixed ₹60 per student. That&apos;s just ₹5 per student per month.
+              Fixed ₹59 per student. That&apos;s just under ₹5 per student per month.
             </p>
           </div>
 
@@ -196,7 +196,7 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
                     <span className="text-lg sm:text-xl font-normal text-mute"> / year</span>
                   </div>
                   <p className="mt-1 text-xs sm:text-sm text-mute">
-                    ₹60 &times; {studentCount.toLocaleString('en-IN')} active students &bull; no extra charges
+                    ₹59 &times; {studentCount.toLocaleString('en-IN')} active students &bull; no extra charges
                   </p>
 
                   <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">

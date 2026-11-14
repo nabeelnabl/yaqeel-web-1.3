@@ -41,13 +41,13 @@ export const PRODUCTS = [
 export const PRICING_OPTIONS = [
   {
     title: 'Normal Tuition Rate',
-    rate: '₹60 / student',
+    rate: '₹59 / student',
     desc: 'For batches, coaching centres & academies',
     href: '/#pricing',
   },
   {
     title: '1 to 1 Rate',
-    rate: '₹100 / student',
+    rate: '₹99 / student',
     desc: 'For individual private tutors (min. 20 students)',
     href: '/1-to-1#pricing',
   },
