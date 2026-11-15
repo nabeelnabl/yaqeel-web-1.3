@@ -115,7 +115,8 @@ html, body {
   will-change: transform;
 }
 
-.animate-marquee:hover {
+.animate-marquee:hover,
+.animate-marquee:active {
   animation-play-state: paused;
 }
 
