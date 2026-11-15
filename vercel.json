@@ -79,7 +79,7 @@
       ]
     },
     {
-      "source": "/site.webmanifest",
+      "source": "/(site\\.webmanifest|manifest\\.json)",
       "headers": [
         {
           "key": "Content-Type",
@@ -106,7 +106,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!robots\\.txt|sitemap\\.xml|llms\\.txt|favicon.*|apple-touch-icon.*|site\\.webmanifest|icons\\.svg|assets/|fonts/).*)",
+      "source": "/((?!robots\\.txt|sitemap\\.xml|llms\\.txt|favicon.*|apple-touch-icon.*|android-chrome.*|site\\.webmanifest|manifest\\.json|icons\\.svg|assets/|fonts/).*)",
       "destination": "/index.html"
     }
   ]
