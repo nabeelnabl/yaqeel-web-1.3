@@ -3,7 +3,7 @@ import { Check, MessageSquare, ArrowRight, Calculator } from 'lucide-react';
 
 const WA_BASE = 'https://wa.me/918590028549';
 const FIXED_PRICE_PER_STUDENT = 59;
-const DISCOUNT_THRESHOLD = 5000;
+const DISCOUNT_THRESHOLD = 2500;
 
 const ITEMS = [
   'All core modules: attendance, fees, exams, payroll',
@@ -12,7 +12,7 @@ const ITEMS = [
   'Free dedicated onboarding, data import & staff training',
 ];
 
-const PRESETS = [50, 100, 250, 500, 1000, 2500, 5000, 7500];
+const PRESETS = [50, 100, 250, 500, 1000, 1500, 2000, 2500, 2501];
 
 export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDemo }) => {
   const [studentCount, setStudentCount] = useState<number>(50);
@@ -23,12 +23,13 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
   const handleSliderChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = parseInt(e.target.value, 10);
     if (!isNaN(val)) {
-      setStudentCount(Math.max(50, Math.min(val, 15000)));
+      setStudentCount(Math.max(50, Math.min(val, 2600)));
     }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const val = parseInt(e.target.value, 10);
+    const raw = e.target.value.replace(/[^0-9]/g, '');
+    const val = parseInt(raw, 10);
     if (isNaN(val)) {
       setStudentCount(0);
     } else {
@@ -38,8 +39,9 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
 
   const getWaLink = () => {
     if (isDiscounted) {
+      const displayCount = studentCount === 2501 ? '2,500+' : `${studentCount.toLocaleString('en-IN')}+`;
       const text = encodeURIComponent(
-        `Hi Yaqeel, our institute has ${studentCount.toLocaleString('en-IN')} students. We would like to get a discounted volume price quote.`
+        `Hi Yaqeel, our institute has ${displayCount} students. We would like to get a discounted volume price quote.`
       );
       return `${WA_BASE}?text=${text}`;
     }
@@ -94,10 +96,9 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
               <span className="text-sm font-medium text-mute">Students:</span>
               <div className="relative inline-flex items-center">
                 <input
-                  type="number"
-                  min="50"
-                  max="50000"
-                  value={studentCount === 0 ? '' : studentCount}
+                  type="text"
+                  inputMode="numeric"
+                  value={studentCount === 0 ? '' : studentCount === 2501 ? '2,500+' : studentCount.toString()}
                   onChange={handleInputChange}
                   placeholder="50"
                   className="w-36 rounded-2xl border border-line bg-paper px-4 py-2.5 text-center text-xl font-bold text-ink focus:border-ink focus:outline-none transition"
@@ -111,26 +112,28 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
               <input
                 type="range"
                 min="50"
-                max="10000"
+                max="2600"
                 step="50"
-                value={studentCount}
+                value={Math.min(studentCount, 2600)}
                 onChange={handleSliderChange}
                 className="w-full h-2 bg-paper rounded-lg appearance-none cursor-pointer accent-ink"
                 aria-label="Student count range slider"
               />
               <div className="mt-2.5 flex justify-between text-xs sm:text-[13px] text-mute font-mono">
                 <span>50</span>
-                <span>2,500</span>
-                <span>5,000</span>
-                <span>10,000+</span>
+                <span>500</span>
+                <span>1,000</span>
+                <span>1,500</span>
+                <span>2,000</span>
+                <span>2,500+</span>
               </div>
             </div>
 
             {/* Quick Preset Chips */}
             <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5">
               {PRESETS.map((count) => {
-                const label = count === 7500 ? '5,000+' : count.toLocaleString('en-IN');
-                const isSelected = count === 7500 ? studentCount > 5000 : studentCount === count;
+                const label = count === 2501 ? '2,500+' : count.toLocaleString('en-IN');
+                const isSelected = count === 2501 ? studentCount > 2500 : studentCount === count;
                 return (
                   <button
                     key={count}
@@ -139,7 +142,7 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
                     className={`rounded-full px-4 py-2 min-h-[44px] inline-flex items-center justify-center text-xs sm:text-sm font-medium transition cursor-pointer ${
                       isSelected
                         ? 'bg-ink text-paper'
-                        : 'border border-line bg-paper text-ink hover:border-ink'
+                        : 'border border-line bg-paper text-ink hover:border-ink hover:bg-white'
                     }`}
                   >
                     {label}
@@ -151,16 +154,16 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
             {/* Calculation Output Box */}
             <div className="mt-8 rounded-2xl border border-line bg-paper p-6 sm:p-8 text-center transition-all">
               {isDiscounted ? (
-                /* 5000+ Students Discount Option */
+                /* 2,500+ Students Discount Option */
                 <div>
                   <div className="inline-block eyebrow text-accent mb-2">
-                    Enterprise Volume Tier
+                    Enterprise Volume Tier &bull; 2,500+ Students
                   </div>
                   <div className="h-display text-3xl sm:text-4xl text-ink">
                     Special Discounted Pricing
                   </div>
                   <p className="mt-2 text-sm text-mute max-w-md mx-auto leading-relaxed">
-                    Institutes with {studentCount.toLocaleString('en-IN')} students qualify for our custom discounted volume slabs.
+                    Institutes with {studentCount === 2501 ? '2,500+' : `${studentCount.toLocaleString('en-IN')}+`} students qualify for our custom discounted volume slabs.
                   </p>
 
                   <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -188,7 +191,7 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
                   </p>
                 </div>
               ) : (
-                /* Standard <= 5000 Calculation */
+                /* Standard <= 2500 Calculation */
                 <div>
                   <span className="eyebrow">Estimated Total Cost</span>
                   <div className="h-display mt-2 text-4xl sm:text-5xl text-ink">
@@ -196,7 +199,7 @@ export const SimplePricing: React.FC<{ onOpenDemo?: () => void }> = ({ onOpenDem
                     <span className="text-lg sm:text-xl font-normal text-mute"> / year</span>
                   </div>
                   <p className="mt-1 text-xs sm:text-sm text-mute">
-                    ₹59 &times; {studentCount.toLocaleString('en-IN')} active students &bull; no extra charges
+                    ₹59 &times; {studentCount.toLocaleString('en-IN')} active students &bull; approx. ₹{Math.round(totalPrice / 12).toLocaleString('en-IN')}/mo &bull; no extra charges
                   </p>
 
                   <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">

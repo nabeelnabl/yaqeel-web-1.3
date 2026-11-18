@@ -109,12 +109,13 @@ export const BusinessPage: React.FC = () => {
     window.open(WA_DEMO, '_blank');
   };
 
-  const isCalcDiscounted = calcCount > 5000;
+  const isCalcDiscounted = calcCount > 2500;
   const calcTotal = calcCount * 59;
 
   const getCalcWaLink = () => {
     if (isCalcDiscounted) {
-      return `${WA_BASE}?text=${encodeURIComponent(`Hi Yaqeel, our institute has ${calcCount.toLocaleString('en-IN')} students. We would like to get a discounted enterprise volume price quote.`)}`;
+      const displayCount = calcCount === 2501 ? '2,500+' : `${calcCount.toLocaleString('en-IN')}+`;
+      return `${WA_BASE}?text=${encodeURIComponent(`Hi Yaqeel, our institute has ${displayCount} students. We would like to get a discounted volume price quote.`)}`;
     }
     return `${WA_BASE}?text=${encodeURIComponent(`Hi Yaqeel, our institute has ${calcCount.toLocaleString('en-IN')} students. We would like to start with the ₹59/student plan.`)}`;
   };
@@ -354,12 +355,12 @@ export const BusinessPage: React.FC = () => {
                 <div className="mt-6 flex items-center justify-center gap-3">
                   <span className="text-sm font-medium text-mute">Students:</span>
                   <input
-                    type="number"
-                    min="50"
-                    max="50000"
-                    value={calcCount === 0 ? '' : calcCount}
+                    type="text"
+                    inputMode="numeric"
+                    value={calcCount === 0 ? '' : calcCount === 2501 ? '2,500+' : calcCount.toString()}
                     onChange={(e) => {
-                      const v = parseInt(e.target.value, 10);
+                      const raw = e.target.value.replace(/[^0-9]/g, '');
+                      const v = parseInt(raw, 10);
                       setCalcCount(isNaN(v) ? 0 : Math.max(0, Math.min(v, 50000)));
                     }}
                     placeholder="50"
@@ -372,29 +373,31 @@ export const BusinessPage: React.FC = () => {
                   <input
                     type="range"
                     min="50"
-                    max="10000"
+                    max="2600"
                     step="50"
-                    value={calcCount}
+                    value={Math.min(calcCount, 2600)}
                     onChange={(e) => {
                       const v = parseInt(e.target.value, 10);
-                      if (!isNaN(v)) setCalcCount(Math.max(50, Math.min(v, 15000)));
+                      if (!isNaN(v)) setCalcCount(Math.max(50, Math.min(v, 2600)));
                     }}
                     className="w-full h-2 bg-paper rounded-lg appearance-none cursor-pointer accent-ink"
                     aria-label="Student count range slider"
                   />
                   <div className="mt-2.5 flex justify-between text-xs sm:text-[13px] text-mute font-mono">
                     <span>50</span>
-                    <span>2,500</span>
-                    <span>5,000</span>
-                    <span>10,000+</span>
+                    <span>500</span>
+                    <span>1,000</span>
+                    <span>1,500</span>
+                    <span>2,000</span>
+                    <span>2,500+</span>
                   </div>
                 </div>
 
                 {/* Quick Presets */}
                 <div className="mt-6 flex flex-wrap items-center justify-center gap-2.5">
-                  {[50, 100, 250, 500, 1000, 2500, 5000, 7500].map((count) => {
-                    const label = count === 7500 ? '5,000+' : count.toLocaleString('en-IN');
-                    const isSelected = count === 7500 ? calcCount > 5000 : calcCount === count;
+                  {[50, 100, 250, 500, 1000, 1500, 2000, 2500, 2501].map((count) => {
+                    const label = count === 2501 ? '2,500+' : count.toLocaleString('en-IN');
+                    const isSelected = count === 2501 ? calcCount > 2500 : calcCount === count;
                     return (
                       <button
                         key={count}
@@ -403,7 +406,7 @@ export const BusinessPage: React.FC = () => {
                         className={`rounded-full px-4 py-2 min-h-[44px] inline-flex items-center justify-center text-xs sm:text-sm font-medium transition cursor-pointer ${
                           isSelected
                             ? 'bg-ink text-paper'
-                            : 'border border-line bg-paper text-ink hover:border-ink'
+                            : 'border border-line bg-paper text-ink hover:border-ink hover:bg-white'
                         }`}
                       >
                         {label}
@@ -417,13 +420,13 @@ export const BusinessPage: React.FC = () => {
                   {isCalcDiscounted ? (
                     <div>
                       <div className="inline-block eyebrow text-accent mb-2">
-                        Enterprise Volume Tier
+                        Enterprise Volume Tier &bull; 2,500+ Students
                       </div>
                       <div className="h-display text-3xl sm:text-4xl text-ink">
                         Special Discounted Pricing
                       </div>
                       <p className="mt-2 text-sm text-mute max-w-md mx-auto leading-relaxed">
-                        Institutes with {calcCount.toLocaleString('en-IN')} students qualify for our custom discounted volume slabs.
+                        Institutes with {calcCount === 2501 ? '2,500+' : `${calcCount.toLocaleString('en-IN')}+`} students qualify for our custom discounted volume slabs.
                       </p>
 
                       <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -455,7 +458,7 @@ export const BusinessPage: React.FC = () => {
                         <span className="text-lg sm:text-xl font-normal text-mute"> / year</span>
                       </div>
                       <p className="mt-1 text-xs sm:text-sm text-mute">
-                        ₹59 &times; {calcCount.toLocaleString('en-IN')} active students &bull; no extra charges
+                        ₹59 &times; {calcCount.toLocaleString('en-IN')} active students &bull; approx. ₹{Math.round(calcTotal / 12).toLocaleString('en-IN')}/mo &bull; no extra charges
                       </p>
 
                       <div className="mt-6 flex flex-col sm:flex-row items-center justify-center gap-3">
