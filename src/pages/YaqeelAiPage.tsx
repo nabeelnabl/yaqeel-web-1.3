@@ -155,14 +155,14 @@ export const YaqeelAiPage: React.FC = () => {
     <div className="min-h-screen overflow-x-clip bg-paper text-ink flex flex-col justify-between">
       <SEO
         title="Yaqeel AI: Voice and Text Search for Institutes"
-        description="An upcoming AI assistant for finding attendance, marks and fee records by voice or text."
+        description="An intelligent AI assistant for finding attendance, marks and fee records by voice or text."
         canonical="https://www.yaqeel.com/yaqeel-ai"
       />
       <Navbar onOpenDemo={openDemo} />
 
       <main className="flex-1 px-6 pt-36 pb-24 sm:pt-44 sm:pb-32">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="eyebrow">Yaqeel AI &bull; In Development</p>
+          <p className="eyebrow">Yaqeel AI &bull; Institute Intelligence</p>
 
           <h1 className="h-display mt-6 text-4xl sm:text-6xl md:text-7xl text-ink">
             Institute intelligence,<br className="hidden sm:inline" /> powered by voice.
@@ -190,11 +190,8 @@ export const YaqeelAiPage: React.FC = () => {
               </div>
 
               <div className="flex items-center gap-2">
-                <span className="text-[11px] font-mono text-mute hidden sm:inline">
+                <span className="text-[11px] font-mono text-mute">
                   Private to your institute
-                </span>
-                <span className="text-[11px] font-mono uppercase tracking-wider text-ink border border-line bg-white px-2 py-0.5 rounded-md">
-                  Coming Soon
                 </span>
               </div>
             </div>

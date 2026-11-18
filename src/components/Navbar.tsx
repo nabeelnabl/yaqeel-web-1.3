@@ -34,7 +34,7 @@ export const PRODUCTS = [
     title: 'Yaqeel AI',
     desc: 'Chatbot with voice or text search for any student',
     href: '/yaqeel-ai',
-    badge: 'Coming Soon',
+    badge: null,
   },
 ];
 
